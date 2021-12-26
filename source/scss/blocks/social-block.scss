@@ -146,6 +146,12 @@
     flex: none;
     margin-bottom: 0.5rem;
 
+    //added:
+    .social-block:not(.social-block--active) & {
+      opacity: 0;
+    }
+    //
+
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
     }
