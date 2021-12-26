@@ -1,0 +1,43 @@
+.page-header__menu {
+  a {
+    transition: color 0.5s ease;
+
+    &::after {
+      transition: all 0.5s ease;
+    }
+  }
+}
+
+.screen {
+  &.active {
+    .intro__message {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.5s ease-in;
+    }
+
+    .form__field {
+      width: calc(100% - 21rem);
+      transition: width 0.3s ease;
+    }
+  }
+}
+
+.swiper-slide {
+  &-active {
+    .slider__item-text {
+      opacity: 1;
+      transform: translateX(0);
+      transition: all 0.5s ease-in;
+    }
+  }
+
+  &-next {
+    .slider__item-text {
+      opacity: 1;
+      transform: translateX(0);
+      transition: all 0.5s ease-in 0.3s;
+    }
+  }
+}
+
