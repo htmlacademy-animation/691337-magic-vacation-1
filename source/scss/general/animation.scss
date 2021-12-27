@@ -19,6 +19,22 @@
     .form__field {
       width: calc(100% - 21rem);
       transition: width 0.3s ease;
+
+      @media (min-width: $stop-scaling) {
+        width: calc(100% - 210px);
+      }
+
+      @media (orientation: portrait) {
+        width: calc(100% - 5rem);
+      }
+
+      @media (max-width: $tablet) and (orientation: landscape) {
+        width: calc(100% - 9rem);
+      }
+
+      @media (max-width: $mobile) and (orientation: landscape) {
+        width: calc(100% - 5rem);
+      }
     }
   }
 }
@@ -28,7 +44,7 @@
     .slider__item-text {
       opacity: 1;
       transform: translateX(0);
-      transition: all 0.5s ease-in;
+      transition: all 0.4s ease-in;
     }
   }
 
@@ -36,7 +52,7 @@
     .slider__item-text {
       opacity: 1;
       transform: translateX(0);
-      transition: all 0.5s ease-in 0.3s;
+      transition: all 0.5s ease-in 0.2s;
     }
   }
 }
