@@ -1012,7 +1012,7 @@ img {
 .screen.active .intro__message {
   opacity: 1;
   transform: translateY(0);
-  transition: all 0.5s ease-in;
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
 }
 .screen.active .form__field {
   width: calc(100% - 21rem);
@@ -1042,12 +1042,12 @@ img {
 .swiper-slide-active .slider__item-text {
   opacity: 1;
   transform: translateX(0);
-  transition: all 0.4s ease-in;
+  transition: opacity 0.4s ease-in, transform 0.4s ease-in;
 }
 .swiper-slide-next .slider__item-text {
   opacity: 1;
   transform: translateX(0);
-  transition: all 0.5s ease-in 0.2s;
+  transition: opacity 0.5s ease-in 0.2s, transform 0.5s ease-in 0.2s;
 }
 
 .social-block--active .social-block__list li {
@@ -1061,6 +1061,14 @@ img {
 }
 .social-block--active .social-block__list li:nth-child(3) {
   transition-delay: 0.4s;
+}
+
+.social-block__toggler {
+  transition: color 0.3s ease;
+}
+.social-block__toggler::before {
+  transition: width, height 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .animation-screen {
@@ -3985,10 +3993,10 @@ img {
   opacity: 1;
   pointer-events: auto;
 }
-.social-block__toggler:active, .social-block__toggler:active:focus {
+.social-block__toggler:active, .social-block__toggler:active:focus, .social-block--active > .social-block__toggler:not(:hover) {
   color: #ffffff;
 }
-.social-block__toggler:active::before, .social-block__toggler:active:focus::before {
+.social-block__toggler:active::before, .social-block__toggler:active:focus::before, .social-block--active > .social-block__toggler:not(:hover)::before {
   width: 100%;
   height: 100%;
   background-color: #a67ee5;
