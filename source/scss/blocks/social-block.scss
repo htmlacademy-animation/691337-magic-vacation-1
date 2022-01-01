@@ -69,7 +69,8 @@
   }
 
   &:active,
-  &:active:focus {
+  &:active:focus,
+  .social-block--active > &:not(:hover) {
     color: $c-light;
 
     &::before {
