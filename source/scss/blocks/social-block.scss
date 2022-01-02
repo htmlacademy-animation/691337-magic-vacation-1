@@ -69,7 +69,8 @@
   }
 
   &:active,
-  &:active:focus {
+  &:active:focus,
+  .social-block--active > &:not(:hover) {
     color: $c-light;
 
     &::before {
@@ -145,6 +146,10 @@
   li {
     flex: none;
     margin-bottom: 0.5rem;
+
+    .social-block:not(.social-block--active) & {
+      opacity: 0;
+    }
 
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
