@@ -35,6 +35,10 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  //added:
+  opacity: 0;
+  transform: translateX(-20px);
+  //
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -177,6 +181,9 @@
   font-size: 1.2rem;
   line-height: 1.0418;
   color: $c-light;
+  //added:
+  opacity: 0;
+  //
 
   @media (min-width: $stop-scaling) {
     font-size: 12px;
@@ -265,7 +272,11 @@
 
     &.active {
       &::after {
-        width: 100%;
+        //added:
+        width: 0;
+        //right: 0;
+        //width: 100%;
+        //
       }
     }
 

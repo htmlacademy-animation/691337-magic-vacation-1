@@ -41,6 +41,9 @@
 .screen__footer {
   position: absolute;
   bottom: 0;
+  //added
+  transform: translateY(40px);
+  //added
   left: 0;
   right: 0;
   color: $c-dark;
