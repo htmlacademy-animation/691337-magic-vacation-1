@@ -4,4 +4,3 @@ export default () => {
     pageBody.classList.add(`loaded`);
   });
 };
-

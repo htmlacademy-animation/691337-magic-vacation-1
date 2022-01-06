@@ -1,36 +1,37 @@
 body.loaded {
   .screen__footer {
     transform: translateY(0);
-    transition: transform 5s ease 3s;
+    transition: transform 0.3s $timing-function-onload 0.2s;
   }
 
   .page-header__logo {
     opacity: 1;
     transform: translateX(0);
-    transition: opacity 4s ease 4s, transform 4s ease 4s;
+    transition: opacity 0.3s $timing-function-onload 0.4s,
+      transform 0.3s $timing-function-onload 0.4s;
   }
 
   .page-header__menu {
     opacity: 1;
-    transition: opacity 4s ease 5s;
+    transition: opacity 0.3s $timing-function-onload 0.5s;
 
     a.active {
       &::after {
         width: 100%;
         right: auto;
         left: 0;
-        transition: width 4s ease 5s;
+        transition: width 0.3s $timing-function-onload 0.5s;
       }
     }
   }
 
   .social-block__toggler {
     opacity: 1;
-    transition: opacity 0.1s ease 6s;
+    transition: opacity 0.1s $timing-function-onload 0.7s;
 
     &::before {
-      transform: scale(2);
-      transition: transform 6s ease 6s;
+      transform: scale(1);
+      transition: transform 0.3s $timing-function-onload 0.7s;
     }
   }
 }
@@ -50,7 +51,7 @@ body.loaded {
     .intro__message {
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+      transition: opacity 0.5s ease-in 1.5s, transform 0.5s ease-in 1.5s;
     }
 
     .form__field {
@@ -112,14 +113,12 @@ body.loaded {
       }
     }
   }
-}
 
-.social-block__toggler {
-  transition: color 0.3s ease;
+  .social-block__toggler {
+    transition: color 0.3s ease;
 
-  &::before {
-    transition: width, height 0.3s ease;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    &::before {
+      transition: width, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
   }
 }
-
