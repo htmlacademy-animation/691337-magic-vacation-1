@@ -51,7 +51,7 @@ body.loaded {
     .intro__message {
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 0.5s ease-in 1.5s, transform 0.5s ease-in 1.5s;
+      transition: opacity 0.5s ease-in 1s, transform 0.5s ease-in 1s;
     }
 
     .form__field {
@@ -73,6 +73,13 @@ body.loaded {
       @media (max-width: $mobile) and (orientation: landscape) {
         width: calc(100% - 5rem);
       }
+    }
+  }
+
+  &.screen--cover.screen--story {
+    &::after {
+      height: 100%;
+      transition: height 0.3s ease-out;
     }
   }
 }
