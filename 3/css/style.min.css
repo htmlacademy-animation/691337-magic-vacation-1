@@ -1066,7 +1066,7 @@ body.loaded .social-block__toggler::before {
     width: calc(100% - 5rem);
   }
 }
-.screen.screen--cover.screen--story::after {
+.screen.screen--cover::after {
   height: 100%;
   transition: height 0.3s ease-out;
 }
