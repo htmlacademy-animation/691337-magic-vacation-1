@@ -78,7 +78,14 @@ export default class FullPageScroll {
         hideScreen(screen);
       }
     });
-    this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+
+    if (isCoverCase) {
+      setTimeout(() => this.screenElements[this.activeScreen]
+      .classList.remove(`screen--hidden`), 300);
+    } else {
+      this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+    }
+
     setTimeout(() => {
       this.screenElements[this.activeScreen].classList.add(`active`);
     }, 100);

@@ -129,3 +129,74 @@ body.loaded {
     }
   }
 }
+
+.screen--rules.active {
+  .rules__item {
+    p {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+    }
+
+    &::before {
+      animation-name: show-bullet;
+      animation-duration: 0.4s;
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(0.2, 0.8, 0.8, 1.4);
+    }
+
+    &:nth-child(1) {
+      &::before {
+        animation-delay: 1s;
+      }
+
+      p {
+        transition-delay: 1.2s;
+      }
+    }
+
+    &:nth-child(2) {
+      &::before {
+        animation-delay: 1.3s;
+      }
+
+      p {
+        transition-delay: 1.5s;
+      }
+    }
+
+    &:nth-child(3) {
+      &::before {
+        animation-delay: 1.6s;
+      }
+
+      p {
+        transition-delay: 1.8s;
+      }
+    }
+
+    &:nth-child(4) {
+      &::before {
+        animation-delay: 1.9s;
+      }
+
+      p {
+        transition-delay: 2.1s;
+      }
+    }
+  }
+
+  .rules__link {
+    color: $c-dark;
+    transition: color 0.2s ease-in 2.6s;
+
+    &::before {
+      animation-name: grow-width-btn;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease-out;
+      animation-delay: 2.3s;
+    }
+  }
+}
+
