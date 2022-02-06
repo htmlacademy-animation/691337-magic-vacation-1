@@ -50,7 +50,30 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     font-size: 5rem;
   }
+
+//added
+  .text__string {
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  .text__string > span {
+    display: inline-block;
+    transform: translate3d(0, 12rem, 0);
+    margin: 0;
+    padding: 0;
+    }
+
+&.active {
+    .text__string > span {
+      transform: translate3d(0, 0, 0);
+      }
+  }
+//
 }
+
 
 .intro__content {
   display: flex;
