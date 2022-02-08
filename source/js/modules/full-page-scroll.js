@@ -1,9 +1,4 @@
 import throttle from 'lodash/throttle';
-//added
-import {TEXT_ANIMATION_SELECTORS} from './constants';
-//import {animationTitleText} from './animation';
-import AnimationTextBuild from './animation-text-build';
-
 
 export default class FullPageScroll {
   constructor() {
@@ -56,7 +51,6 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
-    this.runTitleAnimation();
   }
 
   changeVisibilityDisplay() {
@@ -123,17 +117,5 @@ export default class FullPageScroll {
     } else {
       this.activeScreen = Math.max(0, --this.activeScreen);
     }
-  }
-
-  runTitleAnimation() {
-    const activeList = TEXT_ANIMATION_SELECTORS.filter((it) =>
-      this.screenElements[this.activeScreen].querySelector(`${it}`) !== null);
-    console.log(activeList);
-    activeList.forEach((it) => {
-      const animationTextLine = new AnimationTextBuild(it, 3000, `active`, `transform`);
-      setTimeout(() => {
-        animationTextLine.runAnimation();
-      }, 2000);
-    });
   }
 }
