@@ -7,36 +7,58 @@
           z-index: 2;
           opacity: 0;
           transform: translate(-100px, 290px) rotate(-20deg);
-          animation-name: show-flamingo;
-          animation-duration: 4s;
-          animation-timing-function: ease-in;
-          animation-delay: 2s;
-          animation-fill-mode: forwards;
+          transform-origin: center 70%;
+          animation-name: show-flamingo, move-flamingo;
+          animation-duration: 0.5s, 1s;
+          animation-timing-function: ease-in, linear;
+          animation-delay: 2s, 2.5s;
+          animation-iteration-count: 1, infinite;
+          animation-fill-mode: forwards, both;
+          animation-direction: normal, alternate;
         }
 
         &:nth-child(2) {
           z-index: 1;
-          transform: translate(-40px, 240px) scale(0);
+          opacity: 0;
           animation-name: show-suitcase;
-          animation-duration: 4s;
-          animation-timing-function: ease-in;
+          animation-duration: 0.5s;
+          animation-timing-function: cubic-bezier(.01,.48,.69,1.46);
           animation-delay: 2s;
           animation-fill-mode: forwards;
         }
 
         &:nth-child(3) {
           width: 20%;
-          transform: translate(130px, 25px) rotate(0deg);
+          opacity: 0;
+          z-index: 0;
+          transform: translate(100px, 0px) rotate(-15deg);
+          animation-name: show-right-leaf;
+          animation-duration: 1.5s;
+          animation-timing-function: ease-out;
+          animation-delay: 2.5s;
+          animation-fill-mode: forwards;
         }
 
         &:nth-child(4) {
           width: 20%;
-          transform: translate(-140px, 60px) rotate(20deg);
+          opacity: 0;
+          transform: translate(-140px, 30px) rotate(40deg);
+          animation-name: show-left-leaf;
+          animation-duration: 1.5s;
+          animation-timing-function: ease-out;
+          animation-delay: 2.5s;
+          animation-fill-mode: forwards;
         }
 
         &:nth-child(5) {
           width: 25%;
-          transform: translate(140px, 70px) rotate(-20deg);
+          opacity: 0;
+          transform: translate(140px, 110px) rotate(-10deg);
+          animation-name: show-green-leaf;
+          animation-duration: 1.3s;
+          animation-timing-function: ease-out;
+          animation-delay: 2.7s;
+          animation-fill-mode: forwards;
         }
       }
     }
