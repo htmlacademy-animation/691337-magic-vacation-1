@@ -1,4 +1,29 @@
 .screen.screen--show {
+  .form--result {
+    .form__field {
+      opacity: 0;
+      width: 0;
+      animation-name: show-form-field;
+      animation-duration: 0.7s;
+      animation-delay: 2.7s;
+      animation-fill-mode: forwards;
+
+      &::placeholder {
+        color: $c-dark-translucent;
+        transition: color 0.2s ease 3.2s;
+      }
+    }
+
+    .form__button {
+      opacity: 0;
+      color: $c-dark-transparent;
+      animation-name: show-form-button;
+      animation-duration: 0.5s;
+      animation-delay: 2.5s;
+      animation-fill-mode: forwards;
+    }
+  }
+
   .result--prize {
     .result__image {
       img {

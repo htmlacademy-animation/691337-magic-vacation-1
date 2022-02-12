@@ -10,8 +10,31 @@
     opacity: 1;
   }
 
-  to {
+  100% {
     width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes show-form-button {
+  50% {
+    opacity: 1;
+    color: $c-dark-transparent;
+  }
+  100% {
+    opacity: 1;
+    color: $c-dark;
+  }
+}
+
+@keyframes show-form-field {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+
+  100% {
+    width: calc(100% - 31rem);
     opacity: 1;
   }
 }
@@ -22,7 +45,7 @@
     opacity: 1;
   }
 
-  to {
+  100% {
     transform: translate(-40px, 90px) scale(0.3);
     opacity: 1;
   }
