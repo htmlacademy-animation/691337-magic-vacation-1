@@ -130,6 +130,10 @@
   .form__field {
     width: calc(100% - 31rem);
 
+    &::placeholder {
+      color: $c-dark-transparent;
+    }
+
     @media (min-width: $stop-scaling) {
       width: calc(100% - 310px);
     }

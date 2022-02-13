@@ -1,0 +1,91 @@
+.screen.screen--show {
+  .form--result {
+    .form__field {
+      opacity: 0;
+      width: 0;
+      animation-name: show-form-field;
+      animation-duration: 0.7s;
+      animation-delay: 2.7s;
+      animation-fill-mode: forwards;
+
+      &::placeholder {
+        color: $c-dark-translucent;
+        transition: color 0.2s ease 3.2s;
+      }
+    }
+
+    .form__button {
+      opacity: 0;
+      color: $c-dark-transparent;
+      animation-name: show-form-button;
+      animation-duration: 0.5s;
+      animation-delay: 2.5s;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .result--prize {
+    .result__image {
+      img {
+        &:nth-child(1) {
+          width: 20%;
+          z-index: 2;
+          opacity: 0;
+          transform: translate(-100px, 290px) rotate(-20deg);
+          transform-origin: center 70%;
+          animation-name: show-flamingo, move-flamingo;
+          animation-duration: 0.5s, 1s;
+          animation-timing-function: ease-in, linear;
+          animation-delay: 2s, 2.5s;
+          animation-iteration-count: 1, infinite;
+          animation-fill-mode: forwards, both;
+          animation-direction: normal, alternate;
+        }
+
+        &:nth-child(2) {
+          z-index: 1;
+          opacity: 0;
+          animation-name: show-suitcase;
+          animation-duration: 0.5s;
+          animation-timing-function: cubic-bezier(0.01, 0.48, 0.69, 1.46);
+          animation-delay: 2s;
+          animation-fill-mode: forwards;
+        }
+
+        &:nth-child(3) {
+          width: 20%;
+          opacity: 0;
+          z-index: 0;
+          transform: translate(100px, 0) rotate(-15deg);
+          animation-name: show-right-leaf;
+          animation-duration: 1.5s;
+          animation-timing-function: ease-out;
+          animation-delay: 2.5s;
+          animation-fill-mode: forwards;
+        }
+
+        &:nth-child(4) {
+          width: 20%;
+          opacity: 0;
+          transform: translate(-140px, 30px) rotate(40deg);
+          animation-name: show-left-leaf;
+          animation-duration: 1.5s;
+          animation-timing-function: ease-out;
+          animation-delay: 2.5s;
+          animation-fill-mode: forwards;
+        }
+
+        &:nth-child(5) {
+          width: 25%;
+          opacity: 0;
+          transform: translate(140px, 110px) rotate(-10deg);
+          animation-name: show-green-leaf;
+          animation-duration: 1.3s;
+          animation-timing-function: ease-out;
+          animation-delay: 2.7s;
+          animation-fill-mode: forwards;
+        }
+      }
+    }
+  }
+}

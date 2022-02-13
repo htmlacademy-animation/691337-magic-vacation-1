@@ -9,6 +9,7 @@ import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
 import load from './modules/load.js';
+import AccentTypography from './modules/accent-typography.js';
 
 // init modules
 load();
@@ -23,3 +24,6 @@ social();
 
 const fullPageScroll = new FullPageScroll();
 fullPageScroll.init();
+
+const accentTypography = new AccentTypography();
+accentTypography.init();

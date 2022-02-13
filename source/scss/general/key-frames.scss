@@ -10,8 +10,157 @@
     opacity: 1;
   }
 
-  to {
+  100% {
     width: 100%;
     opacity: 1;
+  }
+}
+
+@keyframes show-form-button {
+  50% {
+    opacity: 1;
+    color: $c-dark-transparent;
+  }
+
+  100% {
+    opacity: 1;
+    color: $c-dark;
+  }
+}
+
+@keyframes show-form-field {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+
+  100% {
+    width: calc(100% - 30vh);
+    opacity: 1;
+  }
+}
+
+@keyframes show-suitcase {
+  0% {
+    transform: translate(-40px, 240px) scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-40px, 90px) scale(0.3);
+    opacity: 1;
+  }
+}
+
+@keyframes show-flamingo {
+  to {
+    opacity: 1;
+    transform: translate(-110px, 110px) rotate(0deg);
+  }
+}
+
+@keyframes show-right-leaf {
+  15% {
+    transform: translate(120px, 70px) rotate(10deg);
+    opacity: 1;
+  }
+
+  30% {
+    transform: translate(120px, 60px) rotate(-5deg);
+    opacity: 1;
+  }
+
+  45% {
+    transform: translate(120px, 70px) rotate(5deg);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(120px, 65px) rotate(-3deg);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translate(120px, 70px) rotate(2deg);
+    opacity: 1;
+  }
+
+  90% {
+    transform: translate(120px, 70px) rotate(-1deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(120px, 70px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes show-left-leaf {
+  15% {
+    transform: translate(-180px, 140px) rotate(-10deg);
+    opacity: 1;
+  }
+
+  30% {
+    transform: translate(-180px, 130px) rotate(10deg);
+    opacity: 1;
+  }
+
+  45% {
+    transform: translate(-180px, 140px) rotate(-5deg);
+    opacity: 1;
+  }
+
+  60% {
+    transform: translate(-180px, 135px) rotate(3deg);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translate(-180px, 140px) rotate(-3deg);
+    opacity: 1;
+  }
+
+  90% {
+    transform: translate(-180px, 140px) rotate(1deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-180px, 140px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes show-green-leaf {
+  25% {
+    transform: translate(140px, 110px) rotate(10deg);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(140px, 110px) rotate(-5deg);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translate(140px, 110px) rotate(2deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(140px, 110px) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes move-flamingo {
+  30% {
+    transform: rotate(0deg) translate(-110px, 117px);
+  }
+
+  100% {
+    transform: rotate(-3deg) translate(-110px, 130px);
   }
 }
