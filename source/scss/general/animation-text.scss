@@ -1,5 +1,9 @@
-.intro__title, .slider__item-title, .prizes__title,
-.rules__title, .game__title, .intro__date {
+.intro__title,
+.slider__item-title,
+.prizes__title,
+.rules__title,
+.game__title,
+.intro__date {
   .text__string {
     display: inline-block;
     overflow: hidden;
@@ -13,12 +17,12 @@
     transform: translate3d(0, 14rem, 0);
     margin: 0;
     padding: 0;
-    }
+  }
 
   &.accent-typography--active {
     .text__string > span {
       transform: translate3d(0, 0.2rem, 0);
-      }
+    }
   }
 }
 

@@ -41,5 +41,3 @@ export const ACCENT_TYPOGRAPHY_SELECTORS = [
     isToSplit: false
   },
 ];
-
-
