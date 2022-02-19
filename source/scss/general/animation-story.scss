@@ -1,0 +1,32 @@
+.screen--story {
+  &.active {
+    .slider__controls {
+      width: 17rem;
+      transition: width 0.5s ease-out 1.5s;
+    }
+
+    .slider__control {
+      &::before {
+        opacity: 1;
+      }
+
+      &.slider__control--prev {
+        opacity: 0;
+        animation-name: show-slider-control-prev;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+        animation-delay: 1.5s;
+        animation-fill-mode: forwards;
+      }
+
+      &.slider__control--next {
+        opacity: 0;
+        animation-name: show-slider-control-next;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+        animation-delay: 1.5s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+}

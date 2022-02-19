@@ -164,3 +164,25 @@
     transform: rotate(-3deg) translate(-110px, 130px);
   }
 }
+
+@keyframes show-slider-control-prev {
+  0% {
+    opacity: 0;
+    transform: rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes show-slider-control-next {
+  0% {
+    opacity: 0;
+    transform: rotate(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
