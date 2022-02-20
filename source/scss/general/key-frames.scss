@@ -170,7 +170,7 @@
     opacity: 0;
     transform: rotate(-180deg);
   }
-  to {
+  100% {
     opacity: 1;
     transform: rotate(0deg);
   }
@@ -181,8 +181,33 @@
     opacity: 0;
     transform: rotate(180deg);
   }
-  to {
+  100% {
     opacity: 1;
     transform: rotate(0deg);
+  }
+}
+
+@keyframes show-result-button-text {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes show-result-button {
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes show-screen-footer {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes show-disclaimer-text {
+  to {
+    opacity: 1;
   }
 }

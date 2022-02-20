@@ -88,4 +88,25 @@
       }
     }
   }
+
+  .result--negative {
+    .result__button {
+      opacity: 0;
+      animation-name: show-result-button-text;
+      animation-duration: 0.4s;
+      animation-timing-function: ease-out;
+      animation-delay: 1.5s;
+      animation-fill-mode: forwards;
+
+      span {
+        opacity: 0;
+        transform: translateX(60px) rotate(180deg);
+        animation-name: show-result-button;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+        animation-delay: 1.5s;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
 }

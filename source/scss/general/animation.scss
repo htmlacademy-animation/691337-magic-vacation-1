@@ -1,9 +1,4 @@
 body.loaded {
-  .screen__footer {
-    transform: translateY(0);
-    transition: transform 0.3s $timing-function-onload 0.2s;
-  }
-
   .page-header__logo {
     opacity: 1;
     transform: translateX(0);
@@ -72,6 +67,24 @@ body.loaded {
 
       @media (max-width: $mobile) and (orientation: landscape) {
         width: calc(100% - 5rem);
+      }
+    }
+
+    .screen__footer {
+      transform: translateY(100%);
+      animation-name: show-screen-footer;
+      animation-duration: 0.3s;
+      animation-timing-function: linear;
+      animation-fill-mode: forwards;
+    }
+
+    .screen__disclaimer {
+      a {
+        opacity: 0;
+        animation-name: show-disclaimer-text;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
       }
     }
   }
