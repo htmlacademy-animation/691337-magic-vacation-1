@@ -260,8 +260,7 @@ body.story-1 {
   .social-block__toggler {
     color: $c-purple;
 
-    &:hover,
-    .social-block--active & {
+    &:hover {
       color: $c-dark;
     }
 
@@ -272,15 +271,19 @@ body.story-1 {
         border-color: $c-dark;
       }
     }
+  }
 
-    &:active,
-    &:active:focus,
-    .social-block--active > &:not(:hover) {
-      color: $c-light;
+  .social-block--active {
+    .social-block__toggler {
+      &:active,
+      &:active:focus,
+      &:not(:hover) {
+        color: $c-light;
 
-      &::before {
-        background-color: $c-dark;
-        border-color: $c-dark;
+        &::before {
+          background-color: $c-dark;
+          border-color: $c-dark;
+        }
       }
     }
   }
@@ -303,8 +306,7 @@ body.story-2 {
   .social-block__toggler {
     color: $c-blue;
 
-    &:hover,
-    .social-block--active & {
+    &:hover {
       color: $c-lightblue;
     }
 
@@ -315,15 +317,19 @@ body.story-2 {
         border-color: $c-lightblue;
       }
     }
+  }
 
-    &:active,
-    &:active:focus,
-    .social-block--active > &:not(:hover) {
-      color: $c-light;
+  .social-block--active {
+    .social-block__toggler {
+      &:active,
+      &:active:focus,
+      &:not(:hover) {
+        color: $c-light;
 
-      &::before {
-        background-color: $c-lightblue;
-        border-color: $c-lightblue;
+        &::before {
+          background-color: $c-lightblue;
+          border-color: $c-lightblue;
+        }
       }
     }
   }
@@ -346,8 +352,7 @@ body.story-3 {
   .social-block__toggler {
     color: $c-lightblue;
 
-    &:hover,
-    .social-block--active & {
+    &:hover {
       color: $c-blue;
     }
 
@@ -358,15 +363,19 @@ body.story-3 {
         border-color: $c-blue;
       }
     }
+  }
 
-    &:active,
-    &:active:focus,
-    .social-block--active > &:not(:hover) {
-      color: $c-light;
+  .social-block--active {
+    .social-block__toggler {
+      &:active,
+      &:active:focus,
+      &:not(:hover) {
+        color: $c-light;
 
-      &::before {
-        background-color: $c-blue;
-        border-color: $c-blue;
+        &::before {
+          background-color: $c-blue;
+          border-color: $c-blue;
+        }
       }
     }
   }
