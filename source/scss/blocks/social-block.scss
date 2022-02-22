@@ -255,3 +255,141 @@
     }
   }
 }
+
+body.story-1 {
+  .social-block__toggler {
+    color: $c-purple;
+
+    &:hover {
+      color: $c-dark;
+    }
+
+    &:focus {
+      color: $c-dark;
+
+      &::before {
+        border-color: $c-dark;
+      }
+    }
+  }
+
+  .social-block--active {
+    .social-block__toggler {
+      &:active,
+      &:active:focus,
+      &:not(:hover) {
+        color: $c-light;
+
+        &::before {
+          background-color: $c-dark;
+          border-color: $c-dark;
+        }
+      }
+    }
+  }
+
+  .social-block__link {
+    &:hover,
+    &:active,
+    &:active:focus {
+      color: $c-dark;
+    }
+
+    &:focus {
+      color: $c-dark;
+      border-color: $c-dark;
+    }
+  }
+}
+
+body.story-2 {
+  .social-block__toggler {
+    color: $c-blue;
+
+    &:hover {
+      color: $c-lightblue;
+    }
+
+    &:focus {
+      color: $c-lightblue;
+
+      &::before {
+        border-color: $c-lightblue;
+      }
+    }
+  }
+
+  .social-block--active {
+    .social-block__toggler {
+      &:active,
+      &:active:focus,
+      &:not(:hover) {
+        color: $c-light;
+
+        &::before {
+          background-color: $c-lightblue;
+          border-color: $c-lightblue;
+        }
+      }
+    }
+  }
+
+  .social-block__link {
+    &:hover,
+    &:active,
+    &:active:focus {
+      color: $c-lightblue;
+    }
+
+    &:focus {
+      color: $c-lightblue;
+      border-color: $c-lightblue;
+    }
+  }
+}
+
+body.story-3 {
+  .social-block__toggler {
+    color: $c-lightblue;
+
+    &:hover {
+      color: $c-blue;
+    }
+
+    &:focus {
+      color: $c-blue;
+
+      &::before {
+        border-color: $c-blue;
+      }
+    }
+  }
+
+  .social-block--active {
+    .social-block__toggler {
+      &:active,
+      &:active:focus,
+      &:not(:hover) {
+        color: $c-light;
+
+        &::before {
+          background-color: $c-blue;
+          border-color: $c-blue;
+        }
+      }
+    }
+  }
+
+  .social-block__link {
+    &:hover,
+    &:active,
+    &:active:focus {
+      color: $c-blue;
+    }
+
+    &:focus {
+      color: $c-blue;
+      border-color: $c-blue;
+    }
+  }
+}

@@ -115,6 +115,9 @@
   font-size: 2.4rem;
   line-height: 1.2;
   color: $c-light;
+  //added
+  opacity: 0;
+  //
 
   @media (min-width: $stop-scaling) {
     margin: auto auto 10px;
@@ -147,6 +150,9 @@
     width: 4rem;
     height: 4rem;
     color: $c-dark;
+    //added
+    opacity: 0;
+    //
 
     @media (min-width: $stop-scaling) {
       margin-left: 15px;

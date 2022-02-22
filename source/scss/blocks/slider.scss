@@ -134,7 +134,7 @@
   transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
-  width: 17rem;
+  width: 30rem;
   z-index: 1;
 
   @media (min-width: $stop-scaling) {
@@ -157,6 +157,7 @@
   width: 4rem;
   height: 4rem;
   color: $c-dark;
+  opacity: 0;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -172,6 +173,7 @@
     border: 2px solid $c-light;
     border-radius: 50%;
     z-index: -1;
+    opacity: 0;
   }
 
   svg {

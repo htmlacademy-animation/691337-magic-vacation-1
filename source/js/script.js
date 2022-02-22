@@ -10,6 +10,7 @@ import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
 import load from './modules/load.js';
 import AccentTypography from './modules/accent-typography.js';
+import StoryScreen from './modules/story-screen.js';
 
 // init modules
 load();
@@ -27,3 +28,6 @@ fullPageScroll.init();
 
 const accentTypography = new AccentTypography();
 accentTypography.init();
+
+const storyScreen = new StoryScreen();
+storyScreen.init();
