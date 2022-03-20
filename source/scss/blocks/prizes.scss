@@ -137,8 +137,13 @@
 
       svg {
 
-        #cloud-1, #cloud-2, #tail-stripes, #balloon, #mountain {
+        #cloud-1, #cloud-2, #tail-stripes, #balloon, #mountain, #window {
           opacity: 0;
+        }
+
+        #window {
+          position: relative;
+          z-index: 2;
         }
       }
       //
