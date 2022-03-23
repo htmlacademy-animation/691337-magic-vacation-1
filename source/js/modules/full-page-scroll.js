@@ -51,6 +51,7 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
+    this.loadPrizesSvg();
   }
 
   changeVisibilityDisplay() {
@@ -89,6 +90,25 @@ export default class FullPageScroll {
     setTimeout(() => {
       this.screenElements[this.activeScreen].classList.add(`active`);
     }, 100);
+  }
+
+  loadPrizesSvg() {
+    const isPrizesScreen = this.screenElements[this.activeScreen].id === `prizes`;
+    if (isPrizesScreen) {
+      const firstPrize = document.querySelector(`.prizes__item--journeys`);
+      const firstPrizeIcon = firstPrize.querySelector(`.prizes__icon`);
+      if (!firstPrizeIcon.querySelector(`object`)) {
+        const element = document.createElement(`object`);
+        element.setAttribute(`type`, `image/svg+xml`);
+        element.setAttribute(`data`, `../../img/prize1-animate.svg`);
+        firstPrizeIcon.appendChild(element);
+        return firstPrizeIcon;
+      } else {
+        return ``;
+      }
+    } else {
+      return ``;
+    }
   }
 
   changeActiveMenuItem() {
