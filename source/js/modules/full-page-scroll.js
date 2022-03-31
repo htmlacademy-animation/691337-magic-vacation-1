@@ -95,19 +95,21 @@ export default class FullPageScroll {
   loadPrizesSvg() {
     const isPrizesScreen = this.screenElements[this.activeScreen].id === `prizes`;
     if (isPrizesScreen) {
-      const firstPrize = document.querySelector(`.prizes__item--journeys`);
-      const firstPrizeIcon = firstPrize.querySelector(`.prizes__icon`);
+      const firstPrizeItem = document.querySelector(`.prizes__item--journeys`);
+      const secondaryPrizeItem = document.querySelector(`.prizes__item--cases`);
+      const firstPrizeIcon = firstPrizeItem.querySelector(`.prizes__icon`);
+      const secondaryPrizeIcon = secondaryPrizeItem.querySelector(`.prizes__icon`);
+
       if (!firstPrizeIcon.querySelector(`object`)) {
-        const element = document.createElement(`object`);
-        element.setAttribute(`type`, `image/svg+xml`);
-        element.setAttribute(`data`, `../../img/prize1-animate.svg`);
-        firstPrizeIcon.appendChild(element);
-        return firstPrizeIcon;
-      } else {
-        return ``;
+        const firstPrize = document.createElement(`object`);
+        const secondaryPrize = document.createElement(`object`);
+        firstPrize.setAttribute(`type`, `image/svg+xml`);
+        secondaryPrize.setAttribute(`type`, `image/svg+xml`);
+        firstPrize.setAttribute(`data`, `../../img/prize1-animate.svg`);
+        secondaryPrize.setAttribute(`data`, `../../img/prize2-animate.svg`);
+        firstPrizeIcon.appendChild(firstPrize);
+        secondaryPrizeIcon.appendChild(secondaryPrize);
       }
-    } else {
-      return ``;
     }
   }
 

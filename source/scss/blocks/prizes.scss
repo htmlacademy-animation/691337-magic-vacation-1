@@ -158,7 +158,6 @@
   }
 
   &--cases {
-    //margin-left: 7rem;
     margin-left: 1rem;
 
     @media (min-width: $stop-scaling) {
@@ -173,10 +172,8 @@
     .prizes__icon {
       position: relative;
       width: 18.8rem;
-      //added:
       left: -9rem;
       padding-bottom: 3px;
-      //
 
       @media (min-width: $stop-scaling) {
         width: 188px;
