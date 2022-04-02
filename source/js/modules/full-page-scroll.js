@@ -107,6 +107,10 @@ export default class FullPageScroll {
         secondaryPrize.setAttribute(`type`, `image/svg+xml`);
         firstPrize.setAttribute(`data`, `../../img/prize1-animate.svg`);
         secondaryPrize.setAttribute(`data`, `../../img/prize2-animate.svg`);
+        firstPrize.setAttribute(`width`, `350`);
+        secondaryPrize.setAttribute(`width`, `260`);
+        firstPrize.setAttribute(`height`, `260`);
+        secondaryPrize.setAttribute(`height`, `260`);
         firstPrizeIcon.appendChild(firstPrize);
         secondaryPrizeIcon.appendChild(secondaryPrize);
       }

@@ -25,6 +25,7 @@
               dur="1.7s"
               begin="show2.begin" />
     <animateTransform attributeName="transform"
+                      type="translate"
                       from="40 0"
                       to="0 0"
                       keyTimes="0; 1"
