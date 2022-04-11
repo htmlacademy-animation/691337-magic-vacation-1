@@ -51,7 +51,6 @@ export default class FullPageScroll {
     this.changeVisibilityDisplay();
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
-    this.loadPrizesSvg();
   }
 
   changeVisibilityDisplay() {
@@ -90,31 +89,6 @@ export default class FullPageScroll {
     setTimeout(() => {
       this.screenElements[this.activeScreen].classList.add(`active`);
     }, 100);
-  }
-
-  loadPrizesSvg() {
-    const isPrizesScreen = this.screenElements[this.activeScreen].id === `prizes`;
-    if (isPrizesScreen) {
-      const firstPrizeItem = document.querySelector(`.prizes__item--journeys`);
-      const secondaryPrizeItem = document.querySelector(`.prizes__item--cases`);
-      const firstPrizeIcon = firstPrizeItem.querySelector(`.prizes__icon`);
-      const secondaryPrizeIcon = secondaryPrizeItem.querySelector(`.prizes__icon`);
-
-      if (!firstPrizeIcon.querySelector(`object`)) {
-        const firstPrize = document.createElement(`object`);
-        const secondaryPrize = document.createElement(`object`);
-        firstPrize.setAttribute(`type`, `image/svg+xml`);
-        secondaryPrize.setAttribute(`type`, `image/svg+xml`);
-        firstPrize.setAttribute(`data`, `../../img/prize1-animate.svg`);
-        secondaryPrize.setAttribute(`data`, `../../img/prize2-animate.svg`);
-        firstPrize.setAttribute(`width`, `350`);
-        secondaryPrize.setAttribute(`width`, `260`);
-        firstPrize.setAttribute(`height`, `260`);
-        secondaryPrize.setAttribute(`height`, `260`);
-        firstPrizeIcon.appendChild(firstPrize);
-        secondaryPrizeIcon.appendChild(secondaryPrize);
-      }
-    }
   }
 
   changeActiveMenuItem() {

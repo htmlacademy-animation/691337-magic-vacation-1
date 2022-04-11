@@ -195,16 +195,13 @@
   }
 
   &--codes {
-    //
-    opacity: 0;
-    //
-
     @media (max-width: $tablet) and (orientation: portrait) {
       padding-left: 0.8rem;
     }
 
     .prizes__icon {
       width: 26rem;
+      padding-bottom: 2px;
 
       @media (min-width: $stop-scaling) {
         width: 260px;
