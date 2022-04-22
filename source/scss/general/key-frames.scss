@@ -223,3 +223,9 @@
     stroke-dasharray: var(--arrFinish);
   }
 }
+
+@keyframes move-result-title {
+  to {
+    transform: translateY(110px);
+  }
+}
