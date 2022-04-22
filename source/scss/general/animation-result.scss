@@ -24,6 +24,15 @@
     }
   }
 
+  .result__title {
+    svg > path {
+    animation-name: show-result-title;
+    animation-duration: 5s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+    }
+  }
+
   .result--prize {
     .result__image {
       img {

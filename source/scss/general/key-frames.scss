@@ -213,3 +213,13 @@
     opacity: 1;
   }
 }
+
+@keyframes show-result-title {
+  0% {
+    stroke-dasharray: var(--arrStart);
+  }
+
+  100% {
+    stroke-dasharray: var(--arrFinish);
+  }
+}
