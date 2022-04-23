@@ -225,7 +225,31 @@
 }
 
 @keyframes move-result-title {
-  to {
+  0% {
+    transform: translateY(0);
+  }
+
+  15% {
+    transform: translateY(20px);
+  }
+
+  30% {
+    transform: translateY(40px);
+  }
+
+  50% {
+    transform: translateY(70px);
+  }
+
+  70% {
+    transform: translateY(110px);
+  }
+
+  85% {
+    transform: translateY(90px);
+  }
+
+  100% {
     transform: translateY(110px);
   }
 }

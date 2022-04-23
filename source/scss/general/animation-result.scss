@@ -24,7 +24,8 @@
     }
   }
 
-  .result--trip, .result--prize {
+  .result--trip,
+  .result--prize {
     .result__title {
       svg > path {
         stroke-dasharray: var(--arrStart);
@@ -124,7 +125,8 @@
       svg > path {
         stroke-dasharray: var(--arrStart);
         animation-name: show-result-title, move-result-title;
-        animation-duration: 0.8s, 0.8s;
+        animation-duration: 0.8s, 1s;
+        animation-timing-function: ease-in;
         animation-fill-mode: forwards, forwards;
 
         &:nth-child(2) {
