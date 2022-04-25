@@ -45,6 +45,7 @@ export default class FullPageScroll {
     this.previousScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
+    this.startAnimation();
   }
 
   changePageDisplay() {
@@ -116,6 +117,18 @@ export default class FullPageScroll {
       this.activeScreen = Math.min(this.screenElements.length - 1, ++this.activeScreen);
     } else {
       this.activeScreen = Math.max(0, --this.activeScreen);
+    }
+  }
+
+  startAnimation() {
+    if (this.screenElements[this.activeScreen].id === `prizes`) {
+      const showStartElement = document.querySelector(`#show`);
+      if (showStartElement) {
+        showStartElement.beginElement();
+        setTimeout(() => {
+          showStartElement.removeAttribute(`id`);
+        }, 10000);
+      }
     }
   }
 }

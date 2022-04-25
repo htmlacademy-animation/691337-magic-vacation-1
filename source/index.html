@@ -212,6 +212,7 @@
                               attributeName="opacity"
                               values="0; 1; 1; 0"
                               keyTimes="0; 0.15; 0.85; 1"
+                              begin="indefinite"
                               dur="4s" />
                     <g>
                       <animateTransform attributeName="transform"
@@ -524,7 +525,7 @@
                               from="0"
                               to="1"
                               dur="0.6s"
-                              begin="5s"
+                              begin="show.begin + 5s"
                               fill="freeze" />
                     <animateTransform attributeName="transform"
                               type="rotate"
@@ -836,7 +837,7 @@
                               from="0"
                               to="1"
                               dur="0.6s"
-                              begin="8s"
+                              begin="show.begin + 8s"
                               fill="freeze" />
                     <animateTransform attributeName="transform"
                               type="translate"
