@@ -253,3 +253,9 @@
     transform: translateY(110px);
   }
 }
+
+@keyframes show-element {
+  to {
+    opacity: 1;
+  }
+}
