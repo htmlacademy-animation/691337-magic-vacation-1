@@ -1,7 +1,8 @@
 export default class GameScreen {
   constructor() {
     this.screen = document.querySelector(`.screen--game`);
-    this.counter = document.querySelector(`.game__counter`);
+    this.counterElements = document.querySelector(`.game__counter`).querySelectorAll(`span`);
+    this.active = 0;
     this.MAX_TIME = 5 * 60;
     this.MS = 1000;
     this.SEC = 60;
@@ -9,6 +10,7 @@ export default class GameScreen {
     this.DELAY = 1200;
 
     this.onUrlHashChanged = this.onUrlHashChanged.bind(this);
+    this.startTimer = this.startTimer.bind(this);
   }
 
   init() {
@@ -18,34 +20,39 @@ export default class GameScreen {
 
   onUrlHashChanged() {
     const isGameScreenActive = location.hash.slice(1) === `game`;
+
     if (isGameScreenActive) {
+      this.active = 1;
+      [...this.counterElements].forEach((it) => {
+        it.textContent = `00`;
+      });
       setTimeout(() => {
-        this.startTimer();
+        requestAnimationFrame(this.startTimer);
       }, this.DELAY);
+    } else {
+      if (this.active) {
+        this.active = 0;
+      }
     }
   }
 
   draw(timePassed) {
-    const counterElements = this.counter.querySelectorAll(`span`);
-    const [minute, second] = [...counterElements];
+    const [minute, second] = [...this.counterElements];
     minute.textContent = `0${Math.floor(timePassed / this.SEC)}`;
     second.textContent = Math.floor(timePassed % this.SEC) < this.LIMIT ?
       `0${Math.floor(timePassed % this.SEC)}` : Math.floor(timePassed % this.SEC);
   }
 
   startTimer() {
-    let start = performance.now();
+    let start = Date.now();
+    let timer = setInterval(() => {
+      let timePassed = (Date.now() - start) / this.MS;
 
-    requestAnimationFrame(() => {
-      let timer = setInterval(() => {
-        let timePassed = (performance.now() - start) / this.MS;
+      if (timePassed > this.MAX_TIME || this.active === 0) {
+        clearInterval(timer);
+      }
 
-        if (timePassed > this.MAX_TIME) {
-          clearInterval(timer);
-        }
-
-        this.draw(timePassed);
-      }, this.MS);
-    });
+      this.draw(timePassed);
+    }, this.MS);
   }
 }
