@@ -11,6 +11,7 @@ import FullPageScroll from './modules/full-page-scroll';
 import load from './modules/load.js';
 import AccentTypography from './modules/accent-typography.js';
 import StoryScreen from './modules/story-screen.js';
+import GameScreen from './modules/game-screen.js';
 import resultTitle from './modules/result-title.js';
 
 // init modules
@@ -33,3 +34,6 @@ accentTypography.init();
 
 const storyScreen = new StoryScreen();
 storyScreen.init();
+
+const gameScreen = new GameScreen();
+gameScreen.init();

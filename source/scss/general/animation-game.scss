@@ -1,0 +1,10 @@
+.screen--game {
+  &.active {
+    .game__counter {
+      animation-name: show-element;
+      animation-duration: 0.2s;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+    }
+  }
+}

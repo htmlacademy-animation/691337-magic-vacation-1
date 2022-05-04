@@ -217,39 +217,47 @@
 @keyframes show-result-title {
   0% {
     stroke-dasharray: var(--arrStart);
+    transform: scale(1.1);
   }
 
   100% {
     stroke-dasharray: var(--arrFinish);
+    transform: scale(0.995);
   }
 }
 
 @keyframes move-result-title {
   0% {
-    transform: translateY(0);
+    transform: translateY(-10rem);
   }
 
   15% {
-    transform: translateY(20px);
+    transform: translateY(-8rem);
   }
 
   30% {
-    transform: translateY(40px);
+    transform: translateY(-6rem);
   }
 
   50% {
-    transform: translateY(70px);
+    transform: translateY(-3.5rem);
   }
 
   70% {
-    transform: translateY(110px);
+    transform: translateY(0);
   }
 
   85% {
-    transform: translateY(90px);
+    transform: translateY(-2rem);
   }
 
   100% {
-    transform: translateY(110px);
+    transform: translateY(0);
+  }
+}
+
+@keyframes show-element {
+  to {
+    opacity: 1;
   }
 }
