@@ -3,7 +3,7 @@ export default class GameScreen {
     this.screen = document.querySelector(`.screen--game`);
     this.counterElements = document.querySelector(`.game__counter`).querySelectorAll(`span`);
     this.active = 0;
-    this.MAX_TIME = 5 * 60;
+    this.MAX_TIME = 5 * 60 + 1;
     this.MS = 1000;
     this.SEC = 60;
     this.LIMIT = 10;
@@ -23,9 +23,8 @@ export default class GameScreen {
 
     if (isGameScreenActive) {
       this.active = 1;
-      [...this.counterElements].forEach((it) => {
-        it.textContent = `00`;
-      });
+      [...this.counterElements][0].textContent = `05`;
+      [...this.counterElements][1].textContent = `00`;
       setTimeout(() => {
         requestAnimationFrame(this.startTimer);
       }, this.DELAY);
@@ -36,23 +35,23 @@ export default class GameScreen {
     }
   }
 
-  draw(timePassed) {
+  draw(timeLeft) {
     const [minute, second] = [...this.counterElements];
-    minute.textContent = `0${Math.floor(timePassed / this.SEC)}`;
-    second.textContent = Math.floor(timePassed % this.SEC) < this.LIMIT ?
-      `0${Math.floor(timePassed % this.SEC)}` : Math.floor(timePassed % this.SEC);
+    minute.textContent = `0${Math.floor(timeLeft / this.SEC)}`;
+    second.textContent = Math.floor(timeLeft % this.SEC) < this.LIMIT ?
+      `0${Math.floor(timeLeft % this.SEC)}` : Math.floor(timeLeft % this.SEC);
   }
 
   startTimer() {
     let start = Date.now();
     let timer = setInterval(() => {
-      let timePassed = (Date.now() - start) / this.MS;
+      let timeLeft = this.MAX_TIME - (Date.now() - start) / this.MS;
 
-      if (timePassed > this.MAX_TIME || this.active === 0) {
+      if (timeLeft <= 1 || this.active === 0) {
         clearInterval(timer);
       }
 
-      this.draw(timePassed);
+      this.draw(timeLeft);
     }, this.MS);
   }
 }
