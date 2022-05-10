@@ -13,6 +13,7 @@ import AccentTypography from './modules/accent-typography.js';
 import StoryScreen from './modules/story-screen.js';
 import GameScreen from './modules/game-screen.js';
 import resultTitle from './modules/result-title.js';
+import PrizesScreen from './modules/prizes-screen.js';
 
 // init modules
 load();
@@ -37,3 +38,6 @@ storyScreen.init();
 
 const gameScreen = new GameScreen();
 gameScreen.init();
+
+const prizesScreen = new PrizesScreen();
+prizesScreen.init();
