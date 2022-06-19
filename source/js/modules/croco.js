@@ -4,8 +4,8 @@ import {timingFunctions} from './utils.js';
 
 const IMG_PATH = `./img/module-4/lose-images`;
 
-const MISHMASH_DURATION = 8000;
-const MISHMASH_DELAY = 500;
+const MISHMASH_DURATION = 600;
+const MISHMASH_DELAY = 300;
 
 const IMAGES_URLS = Object.freeze({
   croco: `${IMG_PATH}/crocodile.png`,
@@ -27,24 +27,22 @@ const MISHMASH_PROPS = {
 };
 
 const OBJECTS = Object.freeze({
-  drop: {
-    imageId: `drop`,
-    x: 65,
-    y: 62,
-    size: 5,
-    opacity: 0,
-    transforms: {
-      translateY: 30
-    }
-  },
   key: {
     imageId: `key`,
     x: 50,
     y: 55,
-    size: 20,
+    size: 15,
+    opacity: 0,
+    transforms: {}
+  },
+  croco: {
+    imageId: `croco`,
+    x: 49,
+    y: 52,
+    size: 90,
     opacity: 0,
     transforms: {
-      translateY: 30
+      translateY: 10
     }
   },
   flamingo: {
@@ -67,16 +65,6 @@ const OBJECTS = Object.freeze({
     imageId: `watermelon`,
     ...MISHMASH_PROPS
   },
-  croco: {
-    imageId: `croco`,
-    x: 49,
-    y: 52,
-    size: 90,
-    opacity: 0,
-    transforms: {
-      translateY: 10
-    }
-  }
 });
 
 export default class Scene2DCroco extends Scene2D {
@@ -110,30 +98,40 @@ export default class Scene2DCroco extends Scene2D {
       fps: 60
     }));
 
-    //this.initCrocoAnimations();
+    this.initKeyAnimations();
+    this.initCrocoAnimations();
     this.initFlamingoAnimations();
     this.initWatermelonAnimations();
     this.initLeafAnimations();
     this.initSnowflakeAnimations();
     this.initSaturnAnimations();
-
-    this.initKeyAnimations();
   }
 
-  /*initCrocoAnimations() {
+  initKeyAnimations() {
+    this.animations.push(new Animation({
+      func: (progress) => {
+        this.objects.key.size = OBJECTS.key.size + progress * 5;
+        this.objects.key.opacity = progress;
+      },
+      duration: 200,
+      delay: 100,
+      easing: timingFunctions.easeLinear
+    }));
+  }
+
+  initCrocoAnimations() {
     this.animations.push(new Animation({
       func: (progress) => {
         const progressReversed = 1 - progress;
-        console.log(`croco anim`);
         this.objects.croco.transforms.translateX = 40 * progressReversed;
-        this.objects.croco.transforms.rotate = 10 * progressReversed;
-        this.objects.croco.opacity = progress;
+        this.objects.croco.transforms.rotate = 30 * progressReversed;
+        this.objects.croco.opacity = 1;
       },
       duration: 2000,
       delay: 1200,
-      easing: timingFunctions.easeInQuad
+      easing: timingFunctions.easeInCubic
     }));
-  }*/
+  }
 
   initFlamingoAnimations() {
     this.animations.push(new Animation({
@@ -141,11 +139,19 @@ export default class Scene2DCroco extends Scene2D {
         this.objects.flamingo.size = progress * 20;
         this.objects.flamingo.transforms.rotate = (1 - progress) * 40;
         this.objects.flamingo.transforms.translateX = progress * -25;
-        //this.objects.flamingo.transforms.translateY = progress * -15;
       },
       duration: MISHMASH_DURATION,
       delay: MISHMASH_DELAY,
       easing: timingFunctions.easeOutExpo
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        this.objects.flamingo.transforms.translateY = progress * 60;
+      },
+      duration: MISHMASH_DURATION,
+      delay: MISHMASH_DURATION + MISHMASH_DELAY,
+      easing: timingFunctions.easeInCubic
     }));
   }
 
@@ -162,6 +168,15 @@ export default class Scene2DCroco extends Scene2D {
       delay: MISHMASH_DELAY,
       easing: timingFunctions.easeOutExpo
     }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        this.objects.watermelon.transforms.translateY = 25 + progress * 40;
+      },
+      duration: MISHMASH_DURATION,
+      delay: MISHMASH_DURATION + MISHMASH_DELAY,
+      easing: timingFunctions.easeInCubic
+    }));
   }
 
   initLeafAnimations() {
@@ -175,6 +190,15 @@ export default class Scene2DCroco extends Scene2D {
       duration: MISHMASH_DURATION,
       delay: MISHMASH_DELAY,
       easing: timingFunctions.easeOutExpo
+    }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        this.objects.leaf.transforms.translateY = -10 + progress * 70;
+      },
+      duration: MISHMASH_DURATION,
+      delay: MISHMASH_DURATION + MISHMASH_DELAY,
+      easing: timingFunctions.easeInCubic
     }));
   }
 
@@ -190,6 +214,15 @@ export default class Scene2DCroco extends Scene2D {
       delay: MISHMASH_DELAY,
       easing: timingFunctions.easeOutExpo
     }));
+
+    this.animations.push(new Animation({
+      func: (progress) => {
+        this.objects.snowflake.transforms.translateY = 10 + progress * 50;
+      },
+      duration: MISHMASH_DURATION,
+      delay: MISHMASH_DURATION + MISHMASH_DELAY,
+      easing: timingFunctions.easeInCubic
+    }));
   }
 
   initSaturnAnimations() {
@@ -204,29 +237,14 @@ export default class Scene2DCroco extends Scene2D {
       delay: MISHMASH_DELAY,
       easing: timingFunctions.easeOutExpo
     }));
-  }
-
-  initKeyAnimations() {
-    this.animations.push(new Animation({
-      func: (progress) => {
-        this.objects.key.transforms.translateY = 30 * (1 - progress);
-        this.objects.key.opacity = progress;
-      },
-      duration: 500,
-      delay: 1200,
-      easing: timingFunctions.easeInQuad
-    }));
 
     this.animations.push(new Animation({
       func: (progress) => {
-        this.objects.key.transforms.translateY = 30 * (1 - progress);
-        this.objects.key.opacity = progress;
+        this.objects.saturn.transforms.translateY = 25 + progress * 30;
       },
-      duration: 500,
-      delay: 1500,
-      easing: timingFunctions.easeInQuad
+      duration: MISHMASH_DURATION,
+      delay: MISHMASH_DURATION + MISHMASH_DELAY,
+      easing: timingFunctions.easeInCubic
     }));
   }
-
-
 }
