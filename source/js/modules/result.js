@@ -1,4 +1,5 @@
 import Scene2DSeaCalf from './sea-calf.js';
+import Scene2DCroco from './croco.js';
 
 export default () => {
   let showResultEls = document.querySelectorAll(`.js-show-result`);
@@ -21,6 +22,11 @@ export default () => {
 
         if (target === `result`) {
           const scene = new Scene2DSeaCalf();
+          scene.init();
+        }
+
+        if (target === `result3`) {
+          const scene = new Scene2DCroco();
           scene.init();
         }
       });
