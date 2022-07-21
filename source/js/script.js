@@ -14,6 +14,7 @@ import StoryScreen from './modules/story-screen.js';
 import GameScreen from './modules/game-screen.js';
 import resultTitle from './modules/result-title.js';
 import PrizesScreen from './modules/prizes-screen.js';
+import SceneBasic from './modules/3d/scene-basic';
 
 // init modules
 load();
@@ -41,3 +42,6 @@ gameScreen.init();
 
 const prizesScreen = new PrizesScreen();
 prizesScreen.init();
+
+const sceneBasic = new SceneBasic();
+sceneBasic.init();

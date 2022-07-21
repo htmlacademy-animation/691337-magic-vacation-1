@@ -10,6 +10,10 @@
   background-size: 100% auto;
   background-position: center;
 
+  //added
+  opacity: 0;
+  //
+
   @include retina {
     background-image: url("../img/scene@2x.png");
   }
@@ -22,3 +26,10 @@
     }
   }
 }
+
+.scene-3d {
+  position: absolute;
+  z-index: -1;
+}
+
+

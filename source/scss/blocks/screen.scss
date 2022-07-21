@@ -310,6 +310,10 @@
   background-size: cover;
   background-position: center;
 
+  //added
+  opacity: 0;
+  //
+
   @media (orientation: portrait) {
     background-size: auto calc(100vh - 13.8rem), 100% 25rem;
     background-position: top center, bottom center;
