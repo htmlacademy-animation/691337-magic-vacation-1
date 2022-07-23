@@ -1,17 +1,16 @@
 import * as THREE from 'three';
 
-const TEXTURE = `./3d/scenes-textures/scene-0.png`;
-
 export default class SceneBasic {
-  constructor() {
-    this.canvas = document.getElementById(`scene-intro`);
+  constructor(options) {
+    this.canvas = options.canvas;
+    this.texture = options.texture;
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.perspectiveAngle = 75;
     this.Z_MIN = 0.1;
     this.Z_MAX = 1000;
 
-    this.init = this.init.bind(this);
+    this.createScene = this.createScene.bind(this);
   }
 
   loadTexture(url) {
@@ -30,11 +29,11 @@ export default class SceneBasic {
     });
   }
 
-  async init() {
+  async createScene() {
     this.scene = new THREE.Scene();
     this.geometry = new THREE.PlaneGeometry(this.width, this.height);
 
-    this.texture = await this.loadTexture(TEXTURE);
+    this.texture = await this.loadTexture(this.texture);
 
     if (this.texture) {
       this.material = new THREE.MeshBasicMaterial({
