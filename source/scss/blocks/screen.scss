@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  z-index: -2;
   overflow: hidden;
 
   &--hidden {
@@ -304,8 +303,9 @@
 }
 
 .screen--story {
-  background-color: $c-dark;
-  background-image: url("../img/slide1.jpg"), url("../img/slide2.jpg"), url("../img/slide3.jpg"), url("../img/slide4.jpg");
+  background-color: $c-dark-transparent;
+  //background-color: $c-dark;
+  //background-image: url("../img/slide1.jpg"), url("../img/slide2.jpg"), url("../img/slide3.jpg"), url("../img/slide4.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
