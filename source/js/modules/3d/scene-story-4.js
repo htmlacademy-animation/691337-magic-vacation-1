@@ -1,6 +1,6 @@
 import SceneBasic from './scene-basic.js';
 
-export default class SceneStory1 extends SceneBasic {
+export default class SceneStory4 extends SceneBasic {
   constructor() {
     const canvas = document.getElementById(`scene-story`);
     const texture = `./3d/scenes-textures/scene-4.png`;
