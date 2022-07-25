@@ -1,3 +1,8 @@
+import SceneStory1 from './3d/scene-story-1';
+import SceneStory2 from './3d/scene-story-2';
+import SceneStory3 from './3d/scene-story-3';
+import SceneStory4 from './3d/scene-story-4';
+
 export default class StoryScreen {
   constructor() {
     this.body = document.querySelector(`body`);
@@ -37,12 +42,19 @@ export default class StoryScreen {
     switch (currentIndex) {
       case 0:
         this.activeClass = `story-1`;
+        this.switchScene(SceneStory1);
         break;
       case 2:
         this.activeClass = `story-2`;
+        this.switchScene(SceneStory2);
         break;
       case 4:
         this.activeClass = `story-3`;
+        this.switchScene(SceneStory3);
+        break;
+      case 6:
+        this.activeClass = `story-4`;
+        this.switchScene(SceneStory4);
         break;
       default:
         this.activeClass = `story-1`;
@@ -50,6 +62,11 @@ export default class StoryScreen {
 
     this.body.classList.remove(this.previousClass);
     this.body.classList.add(this.activeClass);
+  }
+
+  switchScene(Scene) {
+    const scene = new Scene();
+    scene.init();
   }
 
   addListeners() {
