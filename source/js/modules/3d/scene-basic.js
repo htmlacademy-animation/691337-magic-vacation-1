@@ -3,7 +3,6 @@ import * as THREE from 'three';
 export default class SceneBasic {
   constructor(options) {
     this.canvas = options.canvas;
-    this.texture = options.texture;
     this.width = window.innerWidth;
     this.height = window.innerHeight;
     this.perspectiveAngle = 75;
@@ -29,15 +28,44 @@ export default class SceneBasic {
     });
   }
 
-  async createScene() {
+  async createScene(scene) {
     this.scene = new THREE.Scene();
     this.geometry = new THREE.PlaneGeometry(this.width, this.height);
 
-    this.texture = await this.loadTexture(this.texture);
+    this.texture = await this.loadTexture(scene.texture);
 
     if (this.texture) {
-      this.material = new THREE.MeshBasicMaterial({
-        map: this.texture
+      this.material = new THREE.RawShaderMaterial({
+        vertexShader: `
+          uniform mat4 projectionMatrix;
+          uniform mat4 viewMatrix;
+          uniform mat4 modelMatrix;
+
+          attribute vec3 position;
+          attribute vec2 uv;
+
+          varying vec2 vUv;
+
+          void main() {
+            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+            vUv = uv;
+          }
+        `,
+        fragmentShader: `
+          precision mediump float;
+
+          uniform sampler2D uTexture;
+
+          varying vec2 vUv;
+
+          void main() {
+            vec4 textureColor = texture2D(uTexture, vUv);
+            gl_FragColor = textureColor;
+          }
+        `,
+        uniforms: {
+          uTexture: {value: this.texture}
+        }
       });
 
       this.mesh = new THREE.Mesh(this.geometry, this.material);
