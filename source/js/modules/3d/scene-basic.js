@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import vertexShader from './shaders/vertexShader.glsl';
+import fragmentShader from './shaders/fragmentShader.glsl';
 
 export default class SceneBasic {
   constructor(options) {
@@ -36,33 +38,8 @@ export default class SceneBasic {
 
     if (this.texture) {
       this.material = new THREE.RawShaderMaterial({
-        vertexShader: `
-          uniform mat4 projectionMatrix;
-          uniform mat4 viewMatrix;
-          uniform mat4 modelMatrix;
-
-          attribute vec3 position;
-          attribute vec2 uv;
-
-          varying vec2 vUv;
-
-          void main() {
-            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
-            vUv = uv;
-          }
-        `,
-        fragmentShader: `
-          precision mediump float;
-
-          uniform sampler2D uTexture;
-
-          varying vec2 vUv;
-
-          void main() {
-            vec4 textureColor = texture2D(uTexture, vUv);
-            gl_FragColor = textureColor;
-          }
-        `,
+        vertexShader,
+        fragmentShader,
         uniforms: {
           uTexture: {value: this.texture}
         }
