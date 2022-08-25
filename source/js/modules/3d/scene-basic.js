@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import vertexShader from './shaders/vertexShader.glsl';
+import fragmentShader from './shaders/fragmentShader.glsl';
 
 export default class SceneBasic {
   constructor(options) {
@@ -8,6 +10,7 @@ export default class SceneBasic {
     this.perspectiveAngle = 75;
     this.Z_MIN = 0.1;
     this.Z_MAX = 1000;
+    this.HUE = -0.4;
 
     this.createScene = this.createScene.bind(this);
   }
@@ -32,39 +35,18 @@ export default class SceneBasic {
     this.scene = new THREE.Scene();
     this.geometry = new THREE.PlaneGeometry(this.width, this.height);
 
+    this.textureColorChange = scene.textureColorChange;
     this.texture = await this.loadTexture(scene.texture);
 
     if (this.texture) {
       this.material = new THREE.RawShaderMaterial({
-        vertexShader: `
-          uniform mat4 projectionMatrix;
-          uniform mat4 viewMatrix;
-          uniform mat4 modelMatrix;
-
-          attribute vec3 position;
-          attribute vec2 uv;
-
-          varying vec2 vUv;
-
-          void main() {
-            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
-            vUv = uv;
-          }
-        `,
-        fragmentShader: `
-          precision mediump float;
-
-          uniform sampler2D uTexture;
-
-          varying vec2 vUv;
-
-          void main() {
-            vec4 textureColor = texture2D(uTexture, vUv);
-            gl_FragColor = textureColor;
-          }
-        `,
+        vertexShader,
+        fragmentShader,
         uniforms: {
-          uTexture: {value: this.texture}
+          uTexture: {value: this.texture},
+          uTextureColorChange: {value: this.textureColorChange},
+          uHue: {value: this.HUE},
+          uTime: {value: 0},
         }
       });
 
@@ -81,6 +63,17 @@ export default class SceneBasic {
     });
     this.renderer.setSize(this.width, this.height);
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.render(this.scene, this.camera);
+
+    const clock = new THREE.Clock();
+
+    const tick = () => {
+      const elapsedTime = clock.getElapsedTime();
+      this.material.uniforms.uTime.value = elapsedTime;
+      this.renderer.render(this.scene, this.camera);
+
+      window.requestAnimationFrame(tick);
+    };
+
+    tick();
   }
 }
