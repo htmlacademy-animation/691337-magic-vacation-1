@@ -45,6 +45,7 @@ export default class SceneBasic {
         uniforms: {
           uTexture: {value: this.texture},
           uTextureColorChange: {value: this.textureColorChange},
+          uResolution: {value: new THREE.Vector2(this.width, this.height)},
           uHue: {value: this.HUE},
           uTime: {value: 0},
         }
