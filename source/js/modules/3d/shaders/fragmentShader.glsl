@@ -6,22 +6,27 @@ uniform vec2 uResolution;
 uniform float uHue;
 uniform float uTime;
 
-const vec2 circle_center = vec2(1.06, 0.63);
-const float circle_radius = 0.11;
-const float border_width = 0.007;
-const vec4 border_color = vec4(1.0, 1.0, 1.0, 0.2);
-//const float PI = 3.1415;
+const float borderWidth = 0.007;
+const vec4 borderColor = vec4(1.0, 1.0, 1.0, 0.2);
 
 varying vec2 vUv;
+
+struct circle {
+  vec2 centerCoord;
+  float radius;
+};
+
+circle bubble1 = circle(vec2(1.25, 1.35), 0.11);
+circle bubble2 = circle(vec2(0.7, 0.9), 0.09);
+circle bubble3 = circle(vec2(1.35, 0.65), 0.05);
 
 vec2 distort(vec2 p) {
   float theta = atan(p.y, p.x);
   float radius = length(p);
-  radius = pow(radius, 1.3);
+  radius = pow(radius, 1.2);
   p.x = radius * cos(theta);
   p.y = radius * sin(theta);
-  return 0.46 * (p + 1.0);
-  //return 0.5 * (p + 1.0);
+  return 0.5 * (p + 1.0);
 }
 
 vec3 hueShift(vec3 color, float hue) {
@@ -30,48 +35,37 @@ vec3 hueShift(vec3 color, float hue) {
     return vec3(color * cosAngle + cross(k, color) * sin(hue) + k * dot(k, color) * (1.0 - cosAngle));
 }
 
-
-
 void main() {
   vec4 textureColor = texture2D(uTexture, vUv);
 
-  vec2 st = gl_FragCoord.xy / uResolution.y;
-  float dist = distance(st, circle_center);
+  if (uTextureColorChange) {
+    vec2 st = gl_FragCoord.xy / uResolution.y;
+    float dist1 = distance(st, bubble1.centerCoord);
+    float dist2 = distance(st, bubble2.centerCoord);
+    float dist3 = distance(st, bubble3.centerCoord);
 
-  /*float aperture = 178.0;
-    float apertureHalf = 0.5 * aperture * (PI / 180.0);
-    float maxFactor = sin(apertureHalf);
+    if ((dist1 >= bubble1.radius && dist1 <= bubble1.radius + borderWidth) ||
+        (dist2 >= bubble2.radius && dist2 <= bubble2.radius + borderWidth) ||
+        (dist3 >= bubble3.radius && dist3 <= bubble3.radius + borderWidth)) {
+      vec3 color = mix(borderColor.rgb, textureColor.rgb, 0.8);
+      textureColor = vec4(color, textureColor.a);
+    }
 
-    vec2 uvv;
-    vec2 xy = 2.0 * vUv.xy - 1.0;
-    float d = length(xy);
-    d = length(xy * maxFactor);
-    float z = sqrt(1.0 - d * d);
-    float r = atan(d, z) / PI;
-    float phi = atan(xy.y, xy.x);
-    uvv.x = r * cos(phi) + 0.5;
-    //uV_v.x = r * cos(phi) + 0.457;
-    uvv.y = r * sin(phi) + 0.5;
-    */
+    if (dist1 < bubble1.radius || dist2 < bubble2.radius || dist3 < bubble3.radius) {
+      vec2 xy = 2.0 * vUv - 1.0;
+      float d = length(xy);
+      vec2 uv = distort(xy);
+      textureColor = texture2D(uTexture, uv);
+    }
 
-  if (dist >= circle_radius && dist <= circle_radius + border_width) {
-    vec3 color = mix(border_color.rgb, textureColor.rgb, 0.8);
-    gl_FragColor = vec4(color, textureColor.a);
-  }
+    float hue = sin(uHue + uTime) * 0.3;
+    vec3 hueShiftedTexture = hueShift(textureColor.rgb, hue);
+    vec4 textureColorChanged = vec4(hueShiftedTexture, 1);
 
-  else if (dist < circle_radius) {
-    vec2 xy = 2.0 * vUv - 1.0;
-    float d = length(xy);
-    vec2 uv = distort(xy);
-    gl_FragColor = texture2D(uTexture, uv);
+    gl_FragColor = textureColorChanged;
   }
 
   else {
     gl_FragColor = textureColor;
   }
-
-  float hue = sin(uHue + uTime) * 0.3;
-  vec3 hueShiftedTexture = hueShift(textureColor.rgb, hue);
-  vec4 textureColorChanged = vec4(hueShiftedTexture, 1);
-  //gl_FragColor = uTextureColorChange ? textureColorChanged : textureColor;
 }
