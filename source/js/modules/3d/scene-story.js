@@ -5,19 +5,19 @@ const TEXTURE_PATH = `./3d/scenes-textures`;
 const STORY_SCENES = {
   scene1: {
     texture: `${TEXTURE_PATH}/scene-1.png`,
-    textureColorChange: false,
+    isTextureWithBubbles: false,
   },
   scene2: {
     texture: `${TEXTURE_PATH}/scene-2.png`,
-    textureColorChange: true,
+    isTextureWithBubbles: true,
   },
   scene3: {
     texture: `${TEXTURE_PATH}/scene-3.png`,
-    textureColorChange: false,
+    isTextureWithBubbles: false,
   },
   scene4: {
     texture: `${TEXTURE_PATH}/scene-4.png`,
-    textureColorChange: false,
+    isTextureWithBubbles: false,
   },
 };
 
