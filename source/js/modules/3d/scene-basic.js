@@ -35,7 +35,7 @@ export default class SceneBasic {
     this.scene = new THREE.Scene();
     this.geometry = new THREE.PlaneGeometry(this.width, this.height);
 
-    this.textureColorChange = scene.textureColorChange;
+    this.isTextureWithBubbles = scene.isTextureWithBubbles;
     this.texture = await this.loadTexture(scene.texture);
 
     if (this.texture) {
@@ -44,7 +44,8 @@ export default class SceneBasic {
         fragmentShader,
         uniforms: {
           uTexture: {value: this.texture},
-          uTextureColorChange: {value: this.textureColorChange},
+          uTextureWithBubbles: {value: this.isTextureWithBubbles},
+          uResolution: {value: new THREE.Vector2(this.width, this.height)},
           uHue: {value: this.HUE},
           uTime: {value: 0},
         }
