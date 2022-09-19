@@ -7,7 +7,7 @@ uniform float uHue;
 uniform float uTime;
 
 const float borderWidth = 0.007;
-const vec4 borderColor = vec4(1.0, 1.0, 1.0, 0.2);
+const vec4 borderColor = vec4(1.0, 1.0, 1.0, 0.15);
 
 varying vec2 vUv;
 
@@ -17,7 +17,8 @@ struct circle {
 };
 
 circle bubble1 = circle(vec2(1.25, 1.35), 0.11);
-circle bubble2 = circle(vec2(0.7, 0.9), 0.09);
+//circle bubble2 = circle(vec2(0.7, 0.9), 0.09);
+circle bubble2 = circle(vec2(0.7, 1.1), 0.09);
 circle bubble3 = circle(vec2(1.34, 0.65), 0.04);
 
 vec4 renderBubble(circle bubble, vec4 texture) {
@@ -26,12 +27,17 @@ vec4 renderBubble(circle bubble, vec4 texture) {
   vec2 bubblePosition = vec2(bubble.centerCoord);
   //bubblePosition += vec2(sin(uTime) / 2.0, cos(uTime) / 2.0);
   float bubbleRadius = bubble.radius;
+  float glareRadius = bubble.radius - 0.02;
 
   vec2 delta = bubblePosition - pixelPosition;
   float distanceFromBubbleCenter = length(delta);
 
   bool isInBubble = distanceFromBubbleCenter < bubbleRadius;
   bool isBubbleBorder = distanceFromBubbleCenter >= bubbleRadius && distanceFromBubbleCenter <= bubbleRadius + borderWidth;
+  bool isBubbleGlare = distanceFromBubbleCenter >= glareRadius
+                        && distanceFromBubbleCenter <= glareRadius + borderWidth
+                        && pixelPosition.x < bubblePosition.x - bubbleRadius * 0.25
+                        && pixelPosition.y > bubblePosition.y + bubbleRadius * 0.25;
 
   if (isInBubble) {
     float distanceToBorder = bubbleRadius - length(delta);
@@ -40,6 +46,10 @@ vec4 renderBubble(circle bubble, vec4 texture) {
   }
 
   if (isBubbleBorder) {
+    texture = vec4(mix(borderColor.rgb, texture.rgb, 0.8), texture.a);
+  }
+
+  if (isBubbleGlare) {
     texture = vec4(mix(borderColor.rgb, texture.rgb, 0.8), texture.a);
   }
 
