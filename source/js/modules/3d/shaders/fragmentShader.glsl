@@ -67,12 +67,12 @@ vec3 hueShift(vec3 color, float hue) {
 void main() {
   vec4 textureColor = texture2D(uTexture, vUv);
 
-  if (uTextureWithBubbles && uTime < 5.0) {
+  if (uTextureWithBubbles && uTime < 2.0) {
     textureColor = renderBubble(bubble1, textureColor);
     textureColor = renderBubble(bubble2, textureColor);
     textureColor = renderBubble(bubble3, textureColor);
 
-    float hue = sin(uHue - uTime * PI) * 0.25;
+    float hue = sin(uHue - uTime * 3.0 * PI) * 0.25;
     vec3 hueShiftedTexture = hueShift(textureColor.rgb, hue);
     vec4 textureColorChanged = vec4(hueShiftedTexture, 1);
 
