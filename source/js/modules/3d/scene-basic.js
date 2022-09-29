@@ -10,9 +10,14 @@ export default class SceneBasic {
     this.perspectiveAngle = 75;
     this.Z_MIN = 0.1;
     this.Z_MAX = 1000;
-    this.HUE = -0.4;
+    this.HUE_MIN = -0.2;
+    this.HUE_MAX = -0.5;
 
     this.createScene = this.createScene.bind(this);
+  }
+
+  getRandomHue(min, max) {
+    return Math.random() * (max - min) + min;
   }
 
   loadTexture(url) {
@@ -46,10 +51,11 @@ export default class SceneBasic {
           uTexture: {value: this.texture},
           uTextureWithBubbles: {value: this.isTextureWithBubbles},
           uResolution: {value: new THREE.Vector2(this.width, this.height)},
-          uHue: {value: this.HUE},
+          uHue: {value: this.getRandomHue(this.HUE_MAX, this.HUE_MIN)},
           uTime: {value: 0},
         }
       });
+
 
       this.mesh = new THREE.Mesh(this.geometry, this.material);
       this.scene.add(this.mesh);
@@ -70,6 +76,7 @@ export default class SceneBasic {
     const tick = () => {
       const elapsedTime = clock.getElapsedTime();
       this.material.uniforms.uTime.value = elapsedTime;
+
       this.renderer.render(this.scene, this.camera);
 
       window.requestAnimationFrame(tick);
