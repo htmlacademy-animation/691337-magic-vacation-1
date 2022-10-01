@@ -18,16 +18,20 @@ struct circle {
   float radius;
 };
 
-circle bubble1 = circle(vec2(1.25, 1.35), 0.11);
-//circle bubble2 = circle(vec2(0.7, 0.9), 0.09);
-circle bubble2 = circle(vec2(0.7, 1.1), 0.09);
-circle bubble3 = circle(vec2(1.34, 0.65), 0.04);
+circle bubble1 = circle(vec2(1.25, 1.5), 0.11);
+circle bubble2 = circle(vec2(0.9, 1.25), 0.09);
+circle bubble3 = circle(vec2(1.34, 0.8), 0.04);
+
 
 vec4 renderBubble(circle bubble, vec4 texture) {
   float aspectRatio = uResolution.x / uResolution.y;
   vec2 pixelPosition = gl_FragCoord.xy / uResolution.y;
   vec2 bubblePosition = vec2(bubble.centerCoord);
   //bubblePosition += vec2(sin(uTime) / 2.0, cos(uTime) / 2.0);
+
+  bubblePosition.x += sin(uTime * 3.0 * PI) / 6.0 / (uTime * uTime + 1.0);
+  bubblePosition.y += -cos(uTime) / (1.0 - bubble.radius * 3.0);
+
   float bubbleRadius = bubble.radius;
   float glareRadius = bubble.radius - 0.02;
 
@@ -67,7 +71,7 @@ vec3 hueShift(vec3 color, float hue) {
 void main() {
   vec4 textureColor = texture2D(uTexture, vUv);
 
-  if (uTextureWithBubbles && uTime < 2.0) {
+  if (uTextureWithBubbles && uTime < 2.1) {
     textureColor = renderBubble(bubble1, textureColor);
     textureColor = renderBubble(bubble2, textureColor);
     textureColor = renderBubble(bubble3, textureColor);
@@ -77,7 +81,9 @@ void main() {
     vec4 textureColorChanged = vec4(hueShiftedTexture, 1);
 
     gl_FragColor = textureColorChanged;
-  } else  {
+  }
+
+  else  {
     gl_FragColor = textureColor;
   }
 }
