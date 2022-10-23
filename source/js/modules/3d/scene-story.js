@@ -29,7 +29,8 @@ export default class SceneStory extends SceneBasic {
       canvas,
     });
 
-    this.scene = STORY_SCENES.scene1;
+    this.canvas = document.getElementById(`scene-story`);
+    this.story = STORY_SCENES.scene1;
     this.sliderElements = document.querySelectorAll(`.swiper-slide`);
     this.controls = document.querySelectorAll(`.slider__control`);
 
@@ -37,7 +38,7 @@ export default class SceneStory extends SceneBasic {
   }
 
   init() {
-    this.createScene(this.scene);
+    this.createScene(this.story);
     this.addListeners();
   }
 
@@ -46,22 +47,22 @@ export default class SceneStory extends SceneBasic {
     const currentIndex = Array.from(this.sliderElements).findIndex((it) => it.classList.contains(`swiper-slide-active`));
     switch (currentIndex) {
       case 0:
-        this.scene = STORY_SCENES.scene1;
+        this.story = STORY_SCENES.scene1;
         break;
       case 2:
-        this.scene = STORY_SCENES.scene2;
+        this.story = STORY_SCENES.scene2;
         break;
       case 4:
-        this.scene = STORY_SCENES.scene3;
+        this.story = STORY_SCENES.scene3;
         break;
       case 6:
-        this.scene = STORY_SCENES.scene4;
+        this.story = STORY_SCENES.scene4;
         break;
       default:
-        this.scene = STORY_SCENES.scene1;
+        this.story = STORY_SCENES.scene1;
     }
 
-    this.createScene(this.scene);
+    this.createScene(this.story);
   }
 
   addListeners() {

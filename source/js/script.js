@@ -16,6 +16,7 @@ import resultTitle from './modules/result-title.js';
 import PrizesScreen from './modules/prizes-screen.js';
 import SceneStory from './modules/3d/scene-story.js';
 import SceneIntro from './modules/3d/scene-intro.js';
+import SceneExercise from './modules/3d/scene-exercise.js';
 
 // init modules
 load();
@@ -44,8 +45,11 @@ gameScreen.init();
 const prizesScreen = new PrizesScreen();
 prizesScreen.init();
 
+const sceneIntro = new SceneIntro();
+sceneIntro.init();
+
 const sceneStory = new SceneStory();
 sceneStory.init();
 
-const sceneIntro = new SceneIntro();
-sceneIntro.init();
+const sceneExercise = new SceneExercise();
+sceneExercise.init();
