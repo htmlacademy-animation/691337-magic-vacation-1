@@ -29,7 +29,6 @@ export default class SceneStory extends SceneBasic {
       canvas,
     });
 
-    this.canvas = document.getElementById(`scene-story`);
     this.story = STORY_SCENES.scene1;
     this.sliderElements = document.querySelectorAll(`.swiper-slide`);
     this.controls = document.querySelectorAll(`.slider__control`);
