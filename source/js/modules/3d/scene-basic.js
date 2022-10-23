@@ -90,22 +90,25 @@ export default class SceneBasic {
     tick();
   }
 
-  createLights() {
-    this.lightsGroup = new THREE.Group();
+  createLight() {
+    this.light = new THREE.Group();
+    this.light.position.z = this.camera.position.z;
 
     this.directionalLight = new THREE.DirectionalLight(new THREE.Color(`rgb(255, 255, 255)`), 0.84);
-    this.directionalLight.position.set(1, 0.25, 0);
-    this.pointLight1 = new THREE.PointLight(new THREE.Color(`rgb(246, 242, 255)`), 0.60, 10, 2);
-    this.pointLight1.position.set(0.5, -0.5, 1);
-    this.pointLight2 = new THREE.PointLight(new THREE.Color(`rgb(246, 242, 255)`), 0.60, 6, 2);
-    this.pointLight2.position.set(0, -0.5, 1);
+    this.lightTarget = new THREE.Object3D();
+    this.lightTarget.position.y = this.camera.position.z * Math.tan(15 * Math.PI / 180);
+    this.scene.add(this.lightTarget);
+    this.directionalLight.target = this.lightTarget;
+    this.light.add(this.directionalLight);
 
-    this.directionalLightHelper = new THREE.DirectionalLightHelper(this.directionalLight, 0.2);
-    this.pointLightHelper1 = new THREE.PointLightHelper(this.pointLight1, 0.2);
-    this.pointLightHelper2 = new THREE.PointLightHelper(this.pointLight2, 0.2);
+    this.pointLight1 = new THREE.PointLight(new THREE.Color(`rgb(246, 242, 255)`), 0.60, 0, 2);
+    this.pointLight1.position.set(-785, -350, -710);
+    this.light.add(this.pointLight1);
 
-    this.lightsGroup.add(this.directionalLight, this.pointLight1, this.pointLight2);
-    this.lightsGroup.add(this.directionalLightHelper, this.pointLightHelper1, this.pointLightHelper2);
-    this.scene.add(this.lightsGroup);
+    this.pointLight2 = new THREE.PointLight(new THREE.Color(`rgb(245, 254, 255)`), 0.95, 0, 2);
+    this.pointLight2.position.set(940, 800, -985);
+    this.light.add(this.pointLight2);
+
+    this.scene.add(this.light);
   }
 }

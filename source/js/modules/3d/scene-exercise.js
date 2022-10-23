@@ -15,14 +15,16 @@ export default class SceneExercise extends SceneBasic {
   init() {
     this.canvas.style.zIndex = `10`;
     this.addMesh();
-    this.createLights();
+    this.createLight();
     this.renderer.render(this.scene, this.camera);
   }
 
   addMesh() {
-    this.camera.position.z = 3;
-    this.geometry = new THREE.SphereGeometry(0.5, 32, 32);
-    this.material = new THREE.MeshBasicMaterial({color: 0x00ff00});
+    this.camera.position.z = 750;
+
+    this.geometry = new THREE.SphereGeometry(200, 32, 32);
+    this.material = new THREE.MeshStandardMaterial();
+    this.material.roughness = 0.4;
     this.sphere = new THREE.Mesh(this.geometry, this.material);
     this.scene.add(this.sphere, this.camera);
 
