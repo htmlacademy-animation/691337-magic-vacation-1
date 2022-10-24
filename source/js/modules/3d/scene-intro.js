@@ -12,9 +12,11 @@ export default class SceneIntro extends SceneBasic {
     super({
       canvas,
     });
+
   }
 
   init() {
     this.createScene(SCENE);
   }
+
 }
