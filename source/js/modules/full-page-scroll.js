@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import initScene from './3d/scene-controller';
 
 export default class FullPageScroll {
   constructor() {
@@ -45,6 +46,7 @@ export default class FullPageScroll {
     this.previousScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
+    initScene();
   }
 
   changePageDisplay() {
