@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import SceneIntro from './scene-intro.js';
 import SceneStory1 from './scene-story1.js';
 import SceneStory2 from './scene-story2.js';
@@ -130,12 +131,20 @@ const init = () => {
   const textureMaterial = getTextureMaterial(activeScene);
   const texture = addTexture(textureMaterial);
   scene.add(texture);
+  scene.add(activeScene);
+
+  //Controls
+  const controls = new OrbitControls(camera, activeScene.canvas);
+  controls.enableDamping = true;
 
   const clock = new THREE.Clock();
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime();
     textureMaterial.uniforms.uTime.value = elapsedTime;
+
+    //Update controls
+    controls.update();
 
     renderer.render(scene, camera);
 
