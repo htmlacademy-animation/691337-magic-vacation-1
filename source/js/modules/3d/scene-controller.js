@@ -56,6 +56,8 @@ const createInfrastructure = (canvas) => {
   const camera = new THREE.PerspectiveCamera(cameraParams.fov, cameraParams.aspect,
       cameraParams.near, cameraParams.far);
 
+  canvas.style.zIndex = `10`;
+
   const renderer = new THREE.WebGLRenderer({
     canvas
   });
@@ -128,14 +130,14 @@ const init = () => {
   camera.position.z = 750;
   scene.add(camera);
 
+  //Controls
+  const controls = new OrbitControls(camera, activeScene.canvas);
+  controls.enableDamping = true;
+
   const textureMaterial = getTextureMaterial(activeScene);
   const texture = addTexture(textureMaterial);
   scene.add(texture);
   scene.add(activeScene);
-
-  //Controls
-  const controls = new OrbitControls(camera, activeScene.canvas);
-  controls.enableDamping = true;
 
   const clock = new THREE.Clock();
 
