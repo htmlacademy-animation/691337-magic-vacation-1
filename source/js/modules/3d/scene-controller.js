@@ -1,12 +1,13 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-import SceneIntro from './scene-intro.js';
+// import SceneIntro from './scene-intro.js';
 import SceneStory1 from './scene-story1.js';
 import SceneStory2 from './scene-story2.js';
 import SceneStory3 from './scene-story3.js';
 import SceneStory4 from './scene-story4.js';
 import vertexShader from './shaders/vertexShader.glsl';
 import fragmentShader from './shaders/fragmentShader.glsl';
+import SceneExercise from './scene-exercise.js';
 
 const HUE_MIN = -0.2;
 const HUE_MAX = -0.5;
@@ -17,7 +18,8 @@ const body = document.querySelector(`body`);
 const screenIntro = document.getElementById(`top`);
 
 const switchScene = () => {
-  let scene = new SceneIntro();
+  let scene = new SceneExercise();
+  // let scene = new SceneIntro();
   const isIntroHidden = screenIntro.classList.contains(`screen--hidden`);
 
   if (isIntroHidden) {
@@ -44,7 +46,6 @@ const switchScene = () => {
 };
 
 const createInfrastructure = (canvas) => {
-
   const cameraParams = {
     fov: 35,
     aspect: width / height,
@@ -130,22 +131,22 @@ const init = () => {
   camera.position.z = 750;
   scene.add(camera);
 
-  //Controls
+  // Controls
   const controls = new OrbitControls(camera, activeScene.canvas);
   controls.enableDamping = true;
 
-  const textureMaterial = getTextureMaterial(activeScene);
-  const texture = addTexture(textureMaterial);
-  scene.add(texture);
+  // const textureMaterial = getTextureMaterial(activeScene);
+  // const texture = addTexture(textureMaterial);
+  // scene.add(texture);
   scene.add(activeScene);
 
   const clock = new THREE.Clock();
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime();
-    textureMaterial.uniforms.uTime.value = elapsedTime;
+    // textureMaterial.uniforms.uTime.value = elapsedTime;
 
-    //Update controls
+    // Update controls
     controls.update();
 
     renderer.render(scene, camera);
