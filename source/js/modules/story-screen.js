@@ -1,3 +1,5 @@
+import initScene from './3d/scene-controller.js';
+
 export default class StoryScreen {
   constructor() {
     this.body = document.querySelector(`body`);
@@ -52,6 +54,7 @@ export default class StoryScreen {
 
     this.body.classList.remove(this.previousClass);
     this.body.classList.add(this.activeClass);
+    initScene();
   }
 
   addListeners() {

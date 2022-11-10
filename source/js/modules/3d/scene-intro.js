@@ -1,22 +1,9 @@
-import SceneBasic from './scene-basic.js';
+// import * as THREE from 'three';
 
-const SCENE = {
-  texture: `./3d/scenes-textures/scene-0.png`,
-  isTextureWithBubbles: false,
-};
-
-export default class SceneIntro extends SceneBasic {
+export default class SceneIntro {
   constructor() {
-    const canvas = document.getElementById(`scene-intro`);
-
-    super({
-      canvas,
-    });
-
+    this.canvas = document.getElementById(`scene-intro`);
+    this.texture = `./3d/scenes-textures/scene-0.png`;
+    this.isTextureWithBubbles = false;
   }
-
-  init() {
-    this.createScene(SCENE);
-  }
-
 }

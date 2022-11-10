@@ -1,18 +1,17 @@
 import * as THREE from 'three';
-import {getLegFromHypotenuse, getRadiansFromDegrees} from '../utils.js';
+import {getLegFromHypotenuse} from '../utils.js';
 import Lantern from './models/lantern.js';
-import Snowman from './models/snowman.js';
 // development only
 // import GUI from 'lil-gui';
 // const gui = new GUI();
 
-export default class SceneExercise extends THREE.Group {
+export default class SceneStory2 extends THREE.Group {
   constructor() {
     super();
 
-    this.canvas = document.getElementById(`scene-exercise`);
-    // this.texture = `./3d/scenes-textures/scene-2.png`;
-    // this.isTextureWithBubbles = false;
+    this.canvas = document.getElementById(`scene-story`);
+    this.texture = `./3d/scenes-textures/scene-2.png`;
+    this.isTextureWithBubbles = true;
 
     this.defaultMaterial = new THREE.MeshStandardMaterial({
       color: 0x2369d9
@@ -23,7 +22,6 @@ export default class SceneExercise extends THREE.Group {
   constructChildren() {
     this.addPyramid();
     this.addLantern();
-    this.addSnowman();
   }
 
   addPyramid() {
@@ -44,13 +42,5 @@ export default class SceneExercise extends THREE.Group {
     lantern.rotation.y = -0.57;
 
     this.add(lantern);
-  }
-
-  addSnowman() {
-    const snowman = new Snowman();
-    snowman.position.set(-320, -120, 0);
-    snowman.rotation.y = getRadiansFromDegrees(-45);
-
-    this.add(snowman);
   }
 }

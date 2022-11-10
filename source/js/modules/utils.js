@@ -59,3 +59,6 @@ export const timingFunctions = Object.freeze({
   easeInElastic,
   easeOutElastic
 });
+
+export const getLegFromHypotenuse = (hyp) => Math.sqrt(Math.pow(hyp, 2) / 2);
+export const getRadiansFromDegrees = (deg) => deg / (180 / Math.PI);
