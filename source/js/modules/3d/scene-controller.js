@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-// import SceneIntro from './scene-intro.js';
+import SceneIntro from './scene-intro.js';
 import SceneStory1 from './scene-story1.js';
 import SceneStory2 from './scene-story2.js';
 import SceneStory3 from './scene-story3.js';
@@ -18,8 +18,8 @@ const body = document.querySelector(`body`);
 const screenIntro = document.getElementById(`top`);
 
 const switchScene = () => {
-  let scene = new SceneExercise();
-  // let scene = new SceneIntro();
+  //let scene = new SceneExercise();
+  let scene = new SceneIntro();
   const isIntroHidden = screenIntro.classList.contains(`screen--hidden`);
 
   if (isIntroHidden) {
