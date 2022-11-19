@@ -27,7 +27,9 @@ export default class ExtrudeShapes extends THREE.Group {
         bevelThickness: this.shapeItem.cap,
       });
 
-      const mesh = new THREE.Mesh(geometry, this.material);
+      const material = new THREE.MeshStandardMaterial({color: this.shapeItem.color});
+
+      const mesh = new THREE.Mesh(geometry, material);
       this.add(mesh);
     });
   }

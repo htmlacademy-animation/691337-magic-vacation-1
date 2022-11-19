@@ -1,38 +1,43 @@
-import * as THREE from 'three';
 import {SVGLoader} from 'three/examples/jsm/loaders/SVGLoader';
 
-//const SVG_URL = `.`
+const SVG_URL = `./3d/SVG`;
 
 const SHAPES = {
   flamingo: {
-    src: `./3d/SVG/flamingo.svg`,
+    src: `${SVG_URL}/flamingo.svg`,
     depth: 8,
     cap: 2,
+    color: 0xfe6183,
   },
   flower: {
-    src: `./3d/SVG/flower.svg`,
+    src: `${SVG_URL}/flower.svg`,
     depth: 8,
     cap: 2,
+    color: 0x2873f0,
   },
   keyhole: {
-    src: `./3d/SVG/keyhole.svg`,
+    src: `${SVG_URL}/keyhole.svg`,
     depth: 8,
     cap: 2,
+    color: 0xa67ee5,
   },
   leaf: {
-    src: `./3d/SVG/leaf.svg`,
+    src: `${SVG_URL}/leaf.svg`,
     depth: 8,
     cap: 2,
+    color: 0x34df96,
   },
   question: {
-    src: `./3d/SVG/question.svg`,
+    src: `${SVG_URL}/question.svg`,
     depth: 8,
     cap: 2,
+    color: 0x3b7bf2,
   },
   snowflake: {
-    src: `./3d/SVG/snowflake.svg`,
+    src: `${SVG_URL}/snowflake.svg`,
     depth: 8,
     cap: 2,
+    color: 0x3b7bf2,
   }
 };
 
@@ -76,13 +81,11 @@ const getShapes = async () => {
   .fill({})
   .map(async (it, index) => {
     const [key, value] = objectEntries[index];
-    const [name, depth, cap] = [key, value.depth, value.cap];
+    const [name, depth, cap, color] = [key, value.depth, value.cap, value.color];
     const shape = await loadShapes(value.src);
-    //console.log(name, depth, cap, shape);
-    return {name, shape, depth, cap};
+    return {name, shape, depth, cap, color};
   }));
 
-  console.log(mapOfShapes);
   return mapOfShapes;
 };
 
