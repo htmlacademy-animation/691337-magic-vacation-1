@@ -105,7 +105,7 @@ module.exports = {
     new CssoWebpackPlugin({
       pluginOutputPostfix: 'min'
     }),
-    new CopyPlugin({patterns: [
+    new CopyPlugin([
       {
         from: "source/fonts/**/*.{woff,woff2}",
         to: path.join(__dirname, 'build', 'fonts'),
@@ -118,11 +118,11 @@ module.exports = {
           return targetPath.replace(`source${path.sep}`, '');
         },
       },
-      /*{
+      {
         from: "source/*.ico",
         to: path.join(__dirname, 'build'),
         flatten: true,
-      },*/
+      },
       {
         from: "source/3d/**",
         to: path.join(__dirname, 'build'),
@@ -130,6 +130,6 @@ module.exports = {
           return targetPath.replace(`source${path.sep}`, '');
         },
       }
-    ]}),
+    ]),
   ]
 };
