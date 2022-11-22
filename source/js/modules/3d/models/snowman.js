@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {getRadiansFromDegrees} from '../../utils.js';
 
 export default class Snowman extends THREE.Group {
   constructor() {
@@ -28,7 +29,7 @@ export default class Snowman extends THREE.Group {
   addCarrot() {
     const carrot = new THREE.Mesh(new THREE.ConeGeometry(18, 75, 12), new THREE.MeshStandardMaterial({color: 0xca4b1f}));
     carrot.position.set(38, 110, 0);
-    carrot.rotation.z = -1.57;
+    carrot.rotation.z = getRadiansFromDegrees(-90);
     this.add(carrot);
 
 
