@@ -1,7 +1,4 @@
 import * as THREE from 'three';
-import {getRadiansFromDegrees} from '../utils.js';
-import getShapes from './shapes/shapeLoader.js';
-import ExtrudeShapes from './shapes/extrudeShapes.js';
 
 export default class SceneExercise extends THREE.Group {
   constructor() {
@@ -11,71 +8,44 @@ export default class SceneExercise extends THREE.Group {
     // this.texture = `./3d/scenes-textures/scene-2.png`;
     // this.isTextureWithBubbles = false;
 
-    this.mapOfShapes = [];
     this.constructChildren();
   }
 
-  async constructChildren() {
-    this.mapOfShapes = await getShapes();
-    this.addFlamingo();
-    this.addQuestion();
-    this.addSnowflake();
-    this.addLeaf();
-    this.addKeyhole();
-    this.addFlower();
+  constructChildren() {
+    this.addCarpet();
+    this.addRoad();
   }
 
-  addFlamingo() {
-    const flamingo = new ExtrudeShapes(this.mapOfShapes, `flamingo`);
-    flamingo.position.set(-275, 200, 16);
-    flamingo.rotation.set(0.08, 0.08, 3.5);
-    flamingo.scale.set(1.23, 1.38, 0.42);
+  getLatheGeometry(radius, width, height, segments, startAngle, endAngle) {
+    const angle = endAngle - startAngle;
+    const coords = [[radius, 0], [radius + width, 0], [radius + width, height], [radius, height]];
+    const points = coords.map(([a, b]) => new THREE.Vector2(a, b));
+    const phiStart = THREE.MathUtils.degToRad(startAngle);
+    const phiLength = THREE.MathUtils.degToRad(angle);
 
-    this.add(flamingo);
+    const geometry = new THREE.LatheGeometry(points, segments, phiStart, phiLength);
+    return geometry;
   }
 
-  addQuestion() {
-    const question = new ExtrudeShapes(this.mapOfShapes, `question`);
-    question.position.set(100, -157, 16);
-    question.rotation.set(2.3, 0.08, -0.29);
-    question.scale.set(0.93, 1, 1.08);
+  addCarpet() {
+    const geometry = this.getLatheGeometry(763, 180, 3, 32, 16, 74);
+    const material = new THREE.MeshBasicMaterial({color: 0x66499f});
+    const carpet = new THREE.Mesh(geometry, material);
+    carpet.position.set(0, -200, -430);
+    carpet.rotation.set(0, -0.78, 0);
+    carpet.scale.set(0.65, 0.65, 0.65);
 
-    this.add(question);
+    this.add(carpet);
   }
 
-  addSnowflake() {
-    const snowflake = new ExtrudeShapes(this.mapOfShapes, `snowflake`);
-    snowflake.position.set(-150, 0, 20);
-    snowflake.rotation.set(0.08, 0.81, 1.31);
-    snowflake.scale.set(0.93, 0.93, 0.64);
+  addRoad() {
+    const geometry = this.getLatheGeometry(732, 160, 3, 32, 0, 90);
+    const material = new THREE.MeshBasicMaterial({color: 0x626978});
+    const road = new THREE.Mesh(geometry, material);
+    road.position.set(0, -135, -200);
+    road.rotation.set(0, -0.78, 0);
+    road.scale.set(0.6, 0.6, 0.6);
 
-    this.add(snowflake);
-  }
-
-  addLeaf() {
-    const leaf = new ExtrudeShapes(this.mapOfShapes, `leaf`);
-    leaf.position.set(228, 210, 55);
-    leaf.rotation.set(-0.04, -3.73, -2.01);
-    leaf.scale.set(1, 1, 0.8);
-
-    this.add(leaf);
-  }
-
-  addKeyhole() {
-    const keyhole = new ExtrudeShapes(this.mapOfShapes, `keyhole`);
-    keyhole.position.set(800, 800, 0);
-    keyhole.rotation.z = getRadiansFromDegrees(180);
-    keyhole.scale.set(0.8, 0.8, 1);
-
-    this.add(keyhole);
-  }
-
-  addFlower() {
-    const flower = new ExtrudeShapes(this.mapOfShapes, `flower`);
-    flower.position.set(0, 211, 15);
-    flower.rotation.set(0.13, 0.77, 3.14);
-    flower.scale.set(0.5, 0.5, 0.3);
-
-    this.add(flower);
+    this.add(road);
   }
 }

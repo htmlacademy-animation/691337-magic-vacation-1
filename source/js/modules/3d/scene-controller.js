@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-// import SceneIntro from './scene-intro.js';
+import SceneIntro from './scene-intro.js';
 import SceneStory1 from './scene-story1.js';
 import SceneStory2 from './scene-story2.js';
 import SceneStory3 from './scene-story3.js';
@@ -19,7 +19,7 @@ const screenIntro = document.getElementById(`top`);
 
 const switchScene = () => {
   let scene = new SceneExercise();
-  // let scene = new SceneIntro();
+  //let scene = new SceneIntro();
   const isIntroHidden = screenIntro.classList.contains(`screen--hidden`);
 
   if (isIntroHidden) {
@@ -135,16 +135,16 @@ const init = () => {
   const controls = new OrbitControls(camera, activeScene.canvas);
   controls.enableDamping = true;
 
-  const textureMaterial = getTextureMaterial(activeScene);
-  const texture = addTexture(textureMaterial);
-  scene.add(texture);
+  // const textureMaterial = getTextureMaterial(activeScene);
+  // const texture = addTexture(textureMaterial);
+  // scene.add(texture);
   scene.add(activeScene);
 
   const clock = new THREE.Clock();
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime();
-    textureMaterial.uniforms.uTime.value = elapsedTime;
+    // textureMaterial.uniforms.uTime.value = elapsedTime;
 
     // Update controls
     controls.update();
