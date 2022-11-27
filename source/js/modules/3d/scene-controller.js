@@ -18,15 +18,16 @@ const body = document.querySelector(`body`);
 const screenIntro = document.getElementById(`top`);
 
 const switchScene = () => {
-  let scene = new SceneExercise();
+  //let scene = new SceneExercise();
   //let scene = new SceneIntro();
+  let scene = new SceneStory4();
   const isIntroHidden = screenIntro.classList.contains(`screen--hidden`);
 
   if (isIntroHidden) {
     const story = Array.from(body.classList).filter((it) => it.includes(`story`))[0] || ``;
     switch (story) {
       case `story-1`:
-        scene = new SceneStory1();
+        scene = new SceneStory4();
         break;
       case `story-2`:
         scene = new SceneStory2();
@@ -38,7 +39,7 @@ const switchScene = () => {
         scene = new SceneStory4();
         break;
       default:
-        scene = new SceneStory1();
+        scene = new SceneStory4();
     }
   }
 
@@ -135,16 +136,16 @@ const init = () => {
   const controls = new OrbitControls(camera, activeScene.canvas);
   controls.enableDamping = true;
 
-  // const textureMaterial = getTextureMaterial(activeScene);
-  // const texture = addTexture(textureMaterial);
-  // scene.add(texture);
+  const textureMaterial = getTextureMaterial(activeScene);
+  const texture = addTexture(textureMaterial);
+  scene.add(texture);
   scene.add(activeScene);
 
   const clock = new THREE.Clock();
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime();
-    // textureMaterial.uniforms.uTime.value = elapsedTime;
+    textureMaterial.uniforms.uTime.value = elapsedTime;
 
     // Update controls
     controls.update();
