@@ -19,5 +19,4 @@ export const createSphereGeometry = (radius, segmentsWidth, segmentsHeight) => {
 export const createCylinderGeometry = (radiusTop, radiusBottom, height, radialSegments, heightSegments) => {
   const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments, heightSegments);
   return geometry;
-}
-
+};

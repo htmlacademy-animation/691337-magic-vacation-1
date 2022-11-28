@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {getRadiansFromDegrees} from '../../utils.js';
+import {createLatheGeometry, createSphereGeometry} from '../utils-scenes.js';
 
 export default class Saturn extends THREE.Group {
   constructor() {
@@ -18,19 +18,6 @@ export default class Saturn extends THREE.Group {
 
   constructChildren() {
     this.addSaturn();
-    //this.addSphere();
-    //this.addRing();
-  }
-
-  getLatheGeometry(radius, width, height, segments, startAngle, endAngle) {
-    const angle = endAngle - startAngle;
-    const coords = [[radius, 0], [radius + width, 0], [radius + width, height], [radius, height]];
-    const points = coords.map(([a, b]) => new THREE.Vector2(a, b));
-    const phiStart = THREE.MathUtils.degToRad(startAngle);
-    const phiLength = THREE.MathUtils.degToRad(angle);
-
-    const geometry = new THREE.LatheGeometry(points, segments, phiStart, phiLength);
-    return geometry;
   }
 
   addSaturn() {
@@ -41,24 +28,19 @@ export default class Saturn extends THREE.Group {
   }
 
   addSphere() {
-    const sphere = new THREE.Mesh(new THREE.SphereGeometry(60, 12, 12), this.planetMaterial);
+    const sphere = new THREE.Mesh(createSphereGeometry(60, 12, 12), this.planetMaterial);
     return sphere;
-    //this.add(sphere);
   }
 
   addRing() {
     const innerRadius = 80;
-    const outRadius = 120;
+    const outerRadius = 120;
     const height = 2;
     const segments = 32;
     const rotAngleDeg = 18;
-    const coords = [[innerRadius, 0], [outRadius, 0], [outRadius, height], [innerRadius, height]];
-    const points = coords.map(([a, b]) => new THREE.Vector2(a, b));
-    const ring = new THREE.Mesh(new THREE.LatheGeometry(points, segments), this.defaultMaterial);
+    const ring = new THREE.Mesh(createLatheGeometry(innerRadius, outerRadius, height, segments, 0, 360), this.defaultMaterial);
     ring.rotation.x = THREE.MathUtils.degToRad(rotAngleDeg);
     ring.rotation.z = THREE.MathUtils.degToRad(rotAngleDeg);
-
     return ring;
-    //this.add(ring);
   }
 }

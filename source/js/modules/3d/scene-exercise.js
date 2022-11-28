@@ -1,5 +1,6 @@
 import * as THREE from 'three';
-import {createLatheGeometry} from './utils-scenes.js';
+import {createLatheGeometry, createSphereGeometry, createCylinderGeometry} from './utils-scenes.js';
+import Saturn from './models/saturn.js';
 
 export default class SceneExercise extends THREE.Group {
   constructor() {
@@ -15,6 +16,7 @@ export default class SceneExercise extends THREE.Group {
   constructChildren() {
     this.addCarpet();
     this.addRoad();
+    this.addSaturn();
   }
 
   addCarpet() {
@@ -45,5 +47,34 @@ export default class SceneExercise extends THREE.Group {
     road.scale.set(0.6, 0.6, 0.6);
 
     this.add(road);
+  }
+
+  addSaturn() {
+    const lampGroup = new THREE.Group();
+    const saturn = new Saturn();
+    saturn.scale.set(0.6, 0.6, 0.6);
+
+    const hangerGroup = new THREE.Group();
+    hangerGroup.position.set(0, 65, 0);
+
+    const sphereMaterial = new THREE.MeshStandardMaterial({
+      color: 0x6a45c8,
+    });
+    const cylinderMaterial = new THREE.MeshStandardMaterial({
+      color: 0x7d8a9f,
+    });
+
+    const sphere = new THREE.Mesh(createSphereGeometry(10, 12, 12), sphereMaterial);
+
+    const cylinder = new THREE.Mesh(createCylinderGeometry(1, 1, 1000, 16, 16), cylinderMaterial);
+    cylinder.position.set(0, 430, 0);
+
+    hangerGroup.add(sphere, cylinder);
+    hangerGroup.scale.set(0.6, 0.6, 0.6);
+
+    lampGroup.add(hangerGroup, saturn);
+    lampGroup.position.set(57, 157, 0);
+
+    this.add(lampGroup);
   }
 }
