@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import getShapes from './shapes/shapeLoader.js';
 import ExtrudeShapes from './shapes/extrudeShapes.js';
+import {createLatheGeometry} from './utils-scenes.js';
 // development only
 // import GUI from 'lil-gui';
 // const gui = new GUI();
@@ -20,6 +21,22 @@ export default class SceneStory1 extends THREE.Group {
   async constructChildren() {
     this.mapOfShapes = await getShapes();
     this.addFlower();
+    this.addCarpet();
+  }
+
+  addCarpet() {
+    const innerRadius = 763;
+    const width = 180;
+    const height = 3;
+    const outerRadius = innerRadius + width;
+    const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 16, 74);
+    const material = new THREE.MeshBasicMaterial({color: 0x66499f});
+    const carpet = new THREE.Mesh(geometry, material);
+    carpet.position.set(0, -200, -430);
+    carpet.rotation.set(0, -0.78, 0);
+    carpet.scale.set(0.65, 0.65, 0.65);
+
+    this.add(carpet);
   }
 
   addFlower() {
@@ -41,6 +58,4 @@ export default class SceneStory1 extends THREE.Group {
 
     this.add(flower);
   }
-
-
 }

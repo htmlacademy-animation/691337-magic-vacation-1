@@ -25,6 +25,7 @@ export default class SceneIntro extends THREE.Group {
     this.addQuestion();
     this.addSnowflake();
     this.addKeyhole();
+    this.addSaturn();
   }
 
   addFlamingo() {

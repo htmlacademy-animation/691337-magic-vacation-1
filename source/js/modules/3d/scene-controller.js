@@ -135,16 +135,16 @@ const init = () => {
   const controls = new OrbitControls(camera, activeScene.canvas);
   controls.enableDamping = true;
 
-  const textureMaterial = getTextureMaterial(activeScene);
-  const texture = addTexture(textureMaterial);
-  scene.add(texture);
+  // const textureMaterial = getTextureMaterial(activeScene);
+  // const texture = addTexture(textureMaterial);
+  // scene.add(texture);
   scene.add(activeScene);
 
   const clock = new THREE.Clock();
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime();
-    textureMaterial.uniforms.uTime.value = elapsedTime;
+    // textureMaterial.uniforms.uTime.value = elapsedTime;
 
     // Update controls
     controls.update();
