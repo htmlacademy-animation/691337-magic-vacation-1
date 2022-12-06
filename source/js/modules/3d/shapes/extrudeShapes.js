@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {createMaterial} from '../utils-scenes.js';
 
 export default class ExtrudeShapes extends THREE.Group {
   constructor(mapOfShapes, shapeItem) {
@@ -27,7 +28,7 @@ export default class ExtrudeShapes extends THREE.Group {
         bevelThickness: this.shapeItem.cap,
       });
 
-      const material = new THREE.MeshStandardMaterial({color: this.shapeItem.color});
+      const material = createMaterial(this.shapeItem.reflection, this.shapeItem.color);
 
       const mesh = new THREE.Mesh(geometry, material);
       this.add(mesh);

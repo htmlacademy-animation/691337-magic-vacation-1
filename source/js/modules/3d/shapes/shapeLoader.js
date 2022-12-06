@@ -1,4 +1,5 @@
 import {SVGLoader} from 'three/examples/jsm/loaders/SVGLoader';
+import {MATERIAL_REFLECTION, MATERIAL_COLOR} from '../utils-scenes.js';
 
 const SVG_URL = `./3d/SVG`;
 
@@ -7,37 +8,43 @@ const SHAPES = {
     src: `${SVG_URL}/flamingo.svg`,
     depth: 8,
     cap: 2,
-    color: 0xfe6183,
+    color: MATERIAL_COLOR.lightDominantRed,
+    reflection: MATERIAL_REFLECTION.soft,
   },
   flower: {
     src: `${SVG_URL}/flower.svg`,
     depth: 8,
     cap: 2,
-    color: 0x2873f0,
+    color: MATERIAL_COLOR.green,
+    reflection: MATERIAL_REFLECTION.basic,
   },
   keyhole: {
     src: `${SVG_URL}/keyhole.svg`,
     depth: 8,
     cap: 2,
-    color: 0xa67ee5,
+    color: MATERIAL_COLOR.darkPurple,
+    reflection: MATERIAL_REFLECTION.soft,
   },
   leaf: {
     src: `${SVG_URL}/leaf.svg`,
     depth: 8,
     cap: 2,
-    color: 0x34df96,
+    color: MATERIAL_COLOR.green,
+    reflection: MATERIAL_REFLECTION.basic,
   },
   question: {
     src: `${SVG_URL}/question.svg`,
     depth: 8,
     cap: 2,
-    color: 0x3b7bf2,
+    color: MATERIAL_COLOR.blue,
+    reflection: MATERIAL_REFLECTION.basic,
   },
   snowflake: {
     src: `${SVG_URL}/snowflake.svg`,
     depth: 8,
     cap: 2,
-    color: 0x3b7bf2,
+    color: MATERIAL_COLOR.blue,
+    reflection: MATERIAL_REFLECTION.basic,
   }
 };
 
@@ -81,9 +88,9 @@ const getShapes = async () => {
   .fill({})
   .map(async (it, index) => {
     const [key, value] = objectEntries[index];
-    const [name, depth, cap, color] = [key, value.depth, value.cap, value.color];
+    const [name, depth, cap, color, reflection] = [key, value.depth, value.cap, value.color, value.reflection];
     const shape = await loadShapes(value.src);
-    return {name, shape, depth, cap, color};
+    return {name, shape, depth, cap, color, reflection};
   }));
 
   return mapOfShapes;

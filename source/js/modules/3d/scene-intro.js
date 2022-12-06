@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import {getRadiansFromDegrees} from '../utils.js';
 import getShapes from './shapes/shapeLoader.js';
 import ExtrudeShapes from './shapes/extrudeShapes.js';
+import {createMaterial, MATERIAL_REFLECTION, MATERIAL_COLOR} from './utils-scenes.js';
 // development only
 // import GUI from 'lil-gui';
 // const gui = new GUI();
@@ -49,25 +49,19 @@ export default class SceneIntro extends THREE.Group {
   }
 
   addKeyhole() {
+    const group = new THREE.Group();
     const keyhole = new ExtrudeShapes(this.mapOfShapes, `keyhole`);
-    keyhole.position.set(800, 800, 1);
-    keyhole.rotation.z = getRadiansFromDegrees(180);
+    keyhole.position.set(700, 800, -250);
+    keyhole.rotation.z = THREE.MathUtils.degToRad(180);
     keyhole.scale.set(0.8, 0.8, 1);
 
-    // development only
-    // gui.add(keyhole.position, `x`, -1000, 1000, 1).name(`posX`);
-    // gui.add(keyhole.position, `y`, -900, 900, 1).name(`posY`);
-    // gui.add(keyhole.position, `z`, -50, 50, 1).name(`posZ`);
-    // gui.add(keyhole.rotation, `x`, -5, 5, 0.01).name(`rotX`);
-    // gui.add(keyhole.rotation, `y`, -5, 5, 0.01).name(`rotY`);
-    // gui.add(keyhole.rotation, `z`, -5, 5, 0.01).name(`rotZ`);
-    // gui.add(keyhole.scale, `x`, -3, 3, 0.01).name(`scaleX`);
-    // gui.add(keyhole.scale, `y`, -3, 3, 0.01).name(`scaleY`);
-    // gui.add(keyhole.scale, `z`, -3, 3, 0.01).name(`scaleZ`);
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(500, 500),
+        createMaterial(MATERIAL_REFLECTION.basic, MATERIAL_COLOR.purple));
+    plane.position.z = keyhole.position.z;
+    group.add(keyhole, plane);
 
-    this.add(keyhole);
+    this.add(group);
   }
-
 
   addLeaf() {
     const leaf = new ExtrudeShapes(this.mapOfShapes, `leaf`);
