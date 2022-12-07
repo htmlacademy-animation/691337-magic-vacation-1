@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import {getLegFromHypotenuse} from '../utils.js';
 import Lantern from './models/lantern.js';
+import {createMaterial, MATERIAL_REFLECTION, MATERIAL_COLOR} from './utils-scenes.js';
 // development only
 // import GUI from 'lil-gui';
 // const gui = new GUI();
@@ -25,7 +26,8 @@ export default class SceneStory2 extends THREE.Group {
   }
 
   addPyramid() {
-    const mesh = new THREE.Mesh(new THREE.ConeGeometry(getLegFromHypotenuse(250), 280, 4), this.defaultMaterial);
+    const mesh = new THREE.Mesh(new THREE.ConeGeometry(getLegFromHypotenuse(250), 280, 4),
+        createMaterial(MATERIAL_REFLECTION.soft, MATERIAL_COLOR.blue));
     mesh.position.set(-53, -38, 0);
 
     // development only

@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import getShapes from './shapes/shapeLoader.js';
 import ExtrudeShapes from './shapes/extrudeShapes.js';
-import {createLatheGeometry} from './utils-scenes.js';
+import {createLatheGeometry, MATERIAL_REFLECTION, MATERIAL_COLOR} from './utils-scenes.js';
+import Saturn from './models/saturn.js';
 // development only
 // import GUI from 'lil-gui';
 // const gui = new GUI();
@@ -22,6 +23,7 @@ export default class SceneStory1 extends THREE.Group {
     this.mapOfShapes = await getShapes();
     this.addFlower();
     this.addCarpet();
+    this.addSaturn();
   }
 
   addCarpet() {
@@ -57,5 +59,20 @@ export default class SceneStory1 extends THREE.Group {
     // gui.add(flower.scale, `z`, -3, 3, 0.01).name(`scaleZ`);
 
     this.add(flower);
+  }
+
+  addSaturn() {
+    const saturn = new Saturn(
+        MATERIAL_REFLECTION.soft,
+        MATERIAL_COLOR.dominantRed,
+        MATERIAL_COLOR.brightPurple,
+        true,
+        MATERIAL_COLOR.metalGrey
+    );
+
+    saturn.scale.set(0.6, 0.6, 0.6);
+    saturn.position.set(-70, 120, 0);
+
+    this.add(saturn);
   }
 }
