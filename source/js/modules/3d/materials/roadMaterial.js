@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import vertexShader from '../shaders/vertexShader-basis.glsl';
 import fragmentShader from '../shaders/fragmentShader-basis.glsl';
 
-export default class CarpetMaterial extends THREE.ShaderMaterial {
+export default class RoadMaterial extends THREE.ShaderMaterial {
   constructor(params) {
     super();
 
@@ -43,8 +43,8 @@ export default class CarpetMaterial extends THREE.ShaderMaterial {
 
     shader.fragmentShader = shader.fragmentShader.replace(
         `#include <map_fragment>`,
-        `float strength = mod(vUv.x * 3.5, 1.0);
-        strength = step(0.5, strength);
+        `float strength = step(0.96, mod(vUv.y + 0.15, 1.0));
+        strength *= step(0.6, mod(vUv.x * 4.0 + 0.4, 1.0));
         vec3 color = strength < 0.5 ? color1 : color2;
         diffuseColor = vec4(color, vUv);`
     );

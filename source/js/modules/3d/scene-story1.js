@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import getShapes from './shapes/shapeLoader.js';
 import ExtrudeShapes from './shapes/extrudeShapes.js';
 import {createLatheGeometry, MATERIAL_REFLECTION, MATERIAL_COLOR} from './utils-scenes.js';
+import CarpetMaterial from './materials/carpetMaterial.js';
 import Saturn from './models/saturn.js';
 // development only
 // import GUI from 'lil-gui';
@@ -32,9 +33,12 @@ export default class SceneStory1 extends THREE.Group {
     const height = 3;
     const outerRadius = innerRadius + width;
     const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 16, 74);
-    const material = new THREE.MeshBasicMaterial({color: 0x66499f});
+    const material = new CarpetMaterial(
+        {color1: new THREE.Color(MATERIAL_COLOR.lightPurple),
+          color2: new THREE.Color(MATERIAL_COLOR.additionalPurple),
+          reflection: MATERIAL_REFLECTION.soft});
     const carpet = new THREE.Mesh(geometry, material);
-    carpet.position.set(0, -200, -430);
+    carpet.position.set(0, -50, -430);
     carpet.rotation.set(0, -0.78, 0);
     carpet.scale.set(0.65, 0.65, 0.65);
 

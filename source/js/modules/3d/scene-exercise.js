@@ -1,6 +1,7 @@
 import * as THREE from 'three';
-import {MATERIAL_COLOR, createLatheGeometry} from './utils-scenes.js';
+import {MATERIAL_COLOR, MATERIAL_REFLECTION, createLatheGeometry} from './utils-scenes.js';
 import CarpetMaterial from './materials/carpetMaterial.js';
+import RoadMaterial from './materials/roadMaterial.js';
 
 // development only
 // import GUI from 'lil-gui';
@@ -19,6 +20,7 @@ export default class SceneExercise extends THREE.Group {
 
   constructChildren() {
     this.addCarpet();
+    this.addCarpetStory4();
     this.addRoad();
   }
 
@@ -28,10 +30,30 @@ export default class SceneExercise extends THREE.Group {
     const height = 3;
     const outerRadius = innerRadius + width;
     const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 16, 74);
-    //const material = new THREE.MeshBasicMaterial({color: 0x66499f});
-    const material = new CarpetMaterial({color: new THREE.Color(MATERIAL_COLOR.lightPurple)});
+    const material = new CarpetMaterial(
+        {color1: new THREE.Color(MATERIAL_COLOR.lightPurple),
+          color2: new THREE.Color(MATERIAL_COLOR.additionalPurple),
+          reflection: MATERIAL_REFLECTION.soft});
     const carpet = new THREE.Mesh(geometry, material);
-    carpet.position.set(0, -200, -430);
+    carpet.position.set(0, 100, -430);
+    carpet.rotation.set(0, -0.78, 0);
+    carpet.scale.set(0.65, 0.65, 0.65);
+
+    this.add(carpet);
+  }
+
+  addCarpetStory4() {
+    const innerRadius = 763;
+    const width = 180;
+    const height = 3;
+    const outerRadius = innerRadius + width;
+    const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 16, 74);
+    const material = new CarpetMaterial(
+        {color1: new THREE.Color(MATERIAL_COLOR.shadowedLightPurple),
+          color2: new THREE.Color(MATERIAL_COLOR.shadowedAdditionalPurple),
+          reflection: MATERIAL_REFLECTION.soft});
+    const carpet = new THREE.Mesh(geometry, material);
+    carpet.position.set(0, 0, -430);
     carpet.rotation.set(0, -0.78, 0);
     carpet.scale.set(0.65, 0.65, 0.65);
 
@@ -44,9 +66,12 @@ export default class SceneExercise extends THREE.Group {
     const height = 3;
     const outerRadius = innerRadius + width;
     const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 0, 90);
-    const material = new THREE.MeshBasicMaterial({color: 0x626978});
+    const material = new RoadMaterial(
+        {color1: new THREE.Color(MATERIAL_COLOR.grey),
+          color2: new THREE.Color(MATERIAL_COLOR.white),
+          reflection: MATERIAL_REFLECTION.soft});
     const road = new THREE.Mesh(geometry, material);
-    road.position.set(0, -135, -200);
+    road.position.set(0, -100, -300);
     road.rotation.set(0, -0.78, 0);
     road.scale.set(0.6, 0.6, 0.6);
 
