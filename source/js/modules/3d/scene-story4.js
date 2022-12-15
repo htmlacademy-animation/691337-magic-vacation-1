@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import Saturn from './models/saturn.js';
-import {MATERIAL_REFLECTION, MATERIAL_COLOR} from './utils-scenes.js';
+import {createLatheGeometry, MATERIAL_REFLECTION, MATERIAL_COLOR} from './utils-scenes.js';
+import CarpetMaterial from './materials/carpetMaterial.js';
 // development only
 // import GUI from 'lil-gui';
 // const gui = new GUI();
@@ -21,6 +22,7 @@ export default class SceneStory4 extends THREE.Group {
 
   constructChildren() {
     this.addSaturn();
+    this.addCarpet();
   }
 
   addSaturn() {
@@ -36,5 +38,23 @@ export default class SceneStory4 extends THREE.Group {
     saturn.position.set(70, 120, 0);
 
     this.add(saturn);
+  }
+
+  addCarpet() {
+    const innerRadius = 763;
+    const width = 180;
+    const height = 3;
+    const outerRadius = innerRadius + width;
+    const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 16, 74);
+    const material = new CarpetMaterial(
+        {color1: new THREE.Color(MATERIAL_COLOR.shadowedLightPurple),
+          color2: new THREE.Color(MATERIAL_COLOR.shadowedAdditionalPurple),
+          reflection: MATERIAL_REFLECTION.soft});
+    const carpet = new THREE.Mesh(geometry, material);
+    carpet.position.set(0, 0, -430);
+    carpet.rotation.set(0, -0.78, 0);
+    carpet.scale.set(0.65, 0.65, 0.65);
+
+    this.add(carpet);
   }
 }
