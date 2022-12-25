@@ -1,7 +1,10 @@
 import * as THREE from 'three';
 import getShapes from './shapes/shapeLoader.js';
+import getModelGltf from './loaders/gltfLoader.js';
+import getModelObj from './loaders/objLoader.js';
 import ExtrudeShapes from './shapes/extrudeShapes.js';
 import {createMaterial, MATERIAL_REFLECTION, MATERIAL_COLOR} from './utils-scenes.js';
+
 // development only
 // import GUI from 'lil-gui';
 // const gui = new GUI();
@@ -121,5 +124,24 @@ export default class SceneIntro extends THREE.Group {
     // gui.add(snowflake.scale, `z`, -3, 3, 0.01).name(`scaleZ`);
 
     this.add(snowflake);
+  }
+
+  async addAirplane() {
+    const airplane = await getModelObj(`./3d/scenes-models/airplane.obj`,
+        MATERIAL_REFLECTION.basic, MATERIAL_COLOR.white);
+    airplane.position.set(150, 0, 0);
+    this.add(airplane);
+  }
+
+  async addWatermelon() {
+    const watermelon = await getModelGltf(`./3d/scenes-models/watermelon.gltf`);
+    this.add(watermelon);
+  }
+
+  async addSuitcase() {
+    const suitcase = await getModelGltf(`./3d/scenes-models/suitcase.gltf`);
+    suitcase.position.set(-150, 0, 0);
+    suitcase.scale.set(0.3, 0.3, 0.3);
+    this.add(suitcase);
   }
 }
