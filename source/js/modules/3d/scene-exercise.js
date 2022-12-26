@@ -1,7 +1,8 @@
 import * as THREE from 'three';
-import {MATERIAL_COLOR, MATERIAL_REFLECTION, createLatheGeometry} from './utils-scenes.js';
-import CarpetMaterial from './materials/carpetMaterial.js';
-import RoadMaterial from './materials/roadMaterial.js';
+import {MATERIAL_COLOR, MATERIAL_REFLECTION} from './utils-scenes.js';
+import getModelGltf from './loaders/gltfLoader.js';
+import getModelObj from './loaders/objLoader.js';
+
 
 // development only
 // import GUI from 'lil-gui';
@@ -18,63 +19,28 @@ export default class SceneExercise extends THREE.Group {
     this.constructChildren();
   }
 
-  constructChildren() {
-    this.addCarpet();
-    this.addCarpetStory4();
-    this.addRoad();
+  async constructChildren() {
+    await this.addWatermelon();
+    await this.addSuitcase();
+    await this.addAirplane();
   }
 
-  addCarpet() {
-    const innerRadius = 763;
-    const width = 180;
-    const height = 3;
-    const outerRadius = innerRadius + width;
-    const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 16, 74);
-    const material = new CarpetMaterial(
-        {color1: new THREE.Color(MATERIAL_COLOR.lightPurple),
-          color2: new THREE.Color(MATERIAL_COLOR.additionalPurple),
-          reflection: MATERIAL_REFLECTION.soft});
-    const carpet = new THREE.Mesh(geometry, material);
-    carpet.position.set(0, 100, -430);
-    carpet.rotation.set(0, -0.78, 0);
-    carpet.scale.set(0.65, 0.65, 0.65);
-
-    this.add(carpet);
+  async addAirplane() {
+    const airplane = await getModelObj(`./3d/scenes-models/airplane.obj`,
+        MATERIAL_REFLECTION.basic, MATERIAL_COLOR.white);
+    airplane.position.set(150, 0, 0);
+    this.add(airplane);
   }
 
-  addCarpetStory4() {
-    const innerRadius = 763;
-    const width = 180;
-    const height = 3;
-    const outerRadius = innerRadius + width;
-    const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 16, 74);
-    const material = new CarpetMaterial(
-        {color1: new THREE.Color(MATERIAL_COLOR.shadowedLightPurple),
-          color2: new THREE.Color(MATERIAL_COLOR.shadowedAdditionalPurple),
-          reflection: MATERIAL_REFLECTION.soft});
-    const carpet = new THREE.Mesh(geometry, material);
-    carpet.position.set(0, 0, -430);
-    carpet.rotation.set(0, -0.78, 0);
-    carpet.scale.set(0.65, 0.65, 0.65);
-
-    this.add(carpet);
+  async addWatermelon() {
+    const watermelon = await getModelGltf(`./3d/scenes-models/watermelon.gltf`);
+    this.add(watermelon);
   }
 
-  addRoad() {
-    const innerRadius = 732;
-    const width = 160;
-    const height = 3;
-    const outerRadius = innerRadius + width;
-    const geometry = createLatheGeometry(innerRadius, outerRadius, height, 32, 0, 90);
-    const material = new RoadMaterial(
-        {color1: new THREE.Color(MATERIAL_COLOR.grey),
-          color2: new THREE.Color(MATERIAL_COLOR.white),
-          reflection: MATERIAL_REFLECTION.soft});
-    const road = new THREE.Mesh(geometry, material);
-    road.position.set(0, -100, -300);
-    road.rotation.set(0, -0.78, 0);
-    road.scale.set(0.6, 0.6, 0.6);
-
-    this.add(road);
+  async addSuitcase() {
+    const suitcase = await getModelGltf(`./3d/scenes-models/suitcase.gltf`);
+    suitcase.position.set(-150, 0, 0);
+    suitcase.scale.set(0.3, 0.3, 0.3);
+    this.add(suitcase);
   }
 }

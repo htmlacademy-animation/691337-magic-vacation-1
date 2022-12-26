@@ -1,8 +1,6 @@
 import * as THREE from 'three';
-import vertexShader from '../shaders/vertexShader-basis.glsl';
-import fragmentShader from '../shaders/fragmentShader-basis.glsl';
 
-export default class RoadMaterial extends THREE.ShaderMaterial {
+export default class RoadMaterial extends THREE.MeshStandardMaterial {
   constructor(params) {
     super();
 
@@ -13,10 +11,7 @@ export default class RoadMaterial extends THREE.ShaderMaterial {
   }
 
   onBeforeCompile(shader) {
-    shader.vertexShader = vertexShader;
-    shader.fragmentShader = fragmentShader;
 
-    shader.uniforms.uTime = {value: 0.0};
     shader.uniforms.color1 = {value: this.color1};
     shader.uniforms.color2 = {value: this.color2};
     shader.uniforms.metalness = {value: this.metalness};
@@ -24,8 +19,7 @@ export default class RoadMaterial extends THREE.ShaderMaterial {
 
     shader.vertexShader = shader.vertexShader.replace(
         `#include <uv_pars_vertex>`,
-        `varying vec2 vUv;
-        uniform float uTime;`
+        `varying vec2 vUv;`
     );
 
     shader.vertexShader = shader.vertexShader.replace(
@@ -47,12 +41,6 @@ export default class RoadMaterial extends THREE.ShaderMaterial {
         strength *= step(0.6, mod(vUv.x * 4.0 + 0.4, 1.0));
         vec3 color = strength < 0.5 ? color1 : color2;
         diffuseColor = vec4(color, vUv);`
-    );
-
-    shader.fragmentShader = shader.fragmentShader.replace(
-        `#include <output_fragment>`,
-        `diffuseColor.a = 1.0;
-        gl_FragColor = diffuseColor;`
     );
   }
 }
